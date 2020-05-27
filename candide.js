@@ -52,7 +52,6 @@ $.plugin({
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 
         const processFrame = () => {
-            debugger;
             const fontHeight = 7;
             const { videoWidth: width, videoHeight: height } = video;
 
@@ -88,9 +87,7 @@ $.plugin({
 
         navigator.mediaDevices.getUserMedia(constraints)
             .then((stream) => {
-                debugger;
                 video.srcObject = stream;
-                // video.play();
             }).catch(err => {
                 console.error(err);
             });
