@@ -9,11 +9,11 @@ $.plugin({
         const hiddenCanvas = document.createElement("canvas");
         hiddenCanvas.setAttribute("id", "hiddenCanvas");
         hiddenCanvas.style.display = "none";
-        
+
         const outputCanvas = document.createElement("canvas");
         outputCanvas.setAttribute("id", "outputCanvas");
         outputCanvas.style.backgroundColor = "black";
-        
+
         const listNode = document.getElementById("list");
         listNode.parentNode.appendChild(video);
         listNode.parentNode.appendChild(hiddenCanvas);
@@ -29,7 +29,7 @@ $.plugin({
             }
         };
 
-        const getAverageRGB = (frame) => {
+        const getGrayScale = frame => {
             const length = frame.data.length / 4;
 
             let r = 0;
@@ -41,13 +41,13 @@ $.plugin({
                 g += frame.data[i * 4 + 1];
                 b += frame.data[i * 4 + 2];
             }
-
+            const average = (r + g + b) / 3;
             return {
-                r: r / length,
-                g: g / length,
-                b: b / length,
+                r: average / length,
+                g: average / length,
+                b: average / length,
             };
-        };
+        }
 
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 
@@ -74,7 +74,7 @@ $.plugin({
                 for (let y = 0; y < height; y += fontHeight) {
                     for (let x = 0; x < width; x += fontWidth) {
                         const frameSection = hiddenContext.getImageData(x, y, fontWidth, fontHeight);
-                        const { r, g, b } = getAverageRGB(frameSection);
+                        const { r, g, b } = getGrayScale(frameSection);
                         const randomCharacter = charset[Math.floor(Math.random() * charset.length)];
 
                         outputContext.fillStyle = `rgb(${r},${g},${b})`;
@@ -100,7 +100,7 @@ $.plugin({
             console.log('Live!');
         });
     },
-    stop: function(){
+    stop: function () {
         document.getElementById(this.videoNodeId).remove();
         document.getElementById("hiddenCanvas").remove();
         document.getElementById("outputCanvas").remove();
