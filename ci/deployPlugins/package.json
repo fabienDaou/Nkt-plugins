@@ -1,7 +1,7 @@
 {
-  "name": "addpluginstonkt",
+  "name": "deployplugins",
   "version": "1.0.0",
-  "description": "Using puppeteer, add plugins from the 'out' folder to Nkt.",
+  "description": "Using puppeteer, deploy plugins from the 'out' folder to Nkt.",
   "main": "index.js",
   "scripts": {},
   "author": "Fabien Daoulas",

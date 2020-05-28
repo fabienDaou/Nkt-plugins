@@ -1,4 +1,6 @@
 $.plugin({
     name: "Test",
-    init: function(){}
+    init: function(){
+        console.log("deployment succesful!");
+    }
 })

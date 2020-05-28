@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "jshint ./plugins",
     "copyPlugins": "node ./ci/copyPlugins/index.js origin/master",
-    "deploy": "node ./ci/addPluginsToNkt/index.js"
+    "deploy": "cd ci/deployPlugins && npm install && cd ../.. && node ci/deployPlugins/index.js"
   },
   "author": "Fabien Daoulas",
   "license": "ISC"
