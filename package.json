@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "check": "jshint ./plugins"
+    "check": "jshint ./plugins",
+    "copyPlugins": "node ./ci/copyPlugins/index.js"
   },
   "author": "Fabien Daoulas",
   "license": "ISC"

@@ -1,0 +1,10 @@
+{
+  "name": "copyplugins",
+  "version": "1.0.0",
+  "description": "Copy js files from \"plugins\" folder and move only the created or edited one in the last commit to the \"out\" folder.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Fabien Daoulas",
+  "license": "ISC"
+}
