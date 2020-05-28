@@ -47,9 +47,6 @@ else {
                     await page.type(textAreaSelector, command);
                     await page.keyboard.press("Enter");
                     await delay(3000);
-                    await page.type(textAreaSelector, `Plugin '${name}' has been deployed.`);
-                    await page.keyboard.press("Enter");
-                    await delay(2000);
                     console.log(`Plugin '${name}' successfully deployed.`);
                 }
                 await page.type(textAreaSelector, "Enjoy your new plugins !");
