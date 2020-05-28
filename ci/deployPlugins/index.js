@@ -21,9 +21,10 @@ else {
             return console.log('Unable to scan directory: ' + err);
         }
         files.forEach(function (file) {
-            console.log(file.replace(".js", ""));
+            const name = file.replace(".js", "");
+            console.log(`Plugin '${name}' queued for deployment.`);
             pluginsToUpdate.push({
-                name: file.replace(".js", ""),
+                name,
                 content: fs.readFileSync("out/" + file, "utf-8").replace(/(\r\n|\n|\r)/gm, "")
             })
         });
@@ -33,21 +34,23 @@ else {
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
             await page.goto(url);
+            console.log("Successfully navigates to chat.");
             const textAreaSelector = "#typing > textarea";
             await page.waitForSelector(textAreaSelector);
             await page.type(textAreaSelector, "githubNktPluginsCD");
             await page.keyboard.press("Enter");
+            console.log("Logging in...");
             await delay(5000);
             for (var i = 0; i < pluginsToUpdate.length; i++) {
                 const { name, content } = pluginsToUpdate.pop();
                 const command = "/plugin add " + name + " " + content;
-                console.log(command);
                 await page.type(textAreaSelector, command);
                 await page.keyboard.press("Enter");
                 await delay(3000);
                 await page.type(textAreaSelector, `Plugin '${name}' has been deployed.`);
                 await page.keyboard.press("Enter");
                 await delay(2000);
+                console.log(`Plugin '${name}' successfully deployed.`);
             }
             await page.type(textAreaSelector, "Enjoy your new plugins !");
             await page.keyboard.press("Enter");
