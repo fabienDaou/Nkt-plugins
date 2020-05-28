@@ -29,11 +29,12 @@ else {
             })
         });
     });
+    console.log("'" + url + "'");
+    console.log("Length: " + pluginsToUpdate);
     if (pluginsToUpdate.length > 0) {
         (async () => {
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
-            console.log("'" + url + "'");
             await page.goto(url);
             console.log("Successfully navigates to chat.");
             const textAreaSelector = "#typing > textarea";
