@@ -28,36 +28,35 @@ else {
                 content: fs.readFileSync("out/" + file, "utf-8").replace(/(\r\n|\n|\r)/gm, "")
             })
         });
-    });
-    console.log("'" + url + "'");
-    console.log("Length: " + pluginsToUpdate);
-    if (pluginsToUpdate.length > 0) {
-        (async () => {
-            const browser = await puppeteer.launch();
-            const page = await browser.newPage();
-            await page.goto(url);
-            console.log("Successfully navigates to chat.");
-            const textAreaSelector = "#typing > textarea";
-            await page.waitForSelector(textAreaSelector);
-            await page.type(textAreaSelector, "githubNktPluginsCD");
-            await page.keyboard.press("Enter");
-            console.log("Logging in...");
-            await delay(5000);
-            for (var i = 0; i < pluginsToUpdate.length; i++) {
-                const { name, content } = pluginsToUpdate.pop();
-                const command = "/plugin add " + name + " " + content;
-                await page.type(textAreaSelector, command);
+        
+        if (pluginsToUpdate.length > 0) {
+            (async () => {
+                const browser = await puppeteer.launch();
+                const page = await browser.newPage();
+                await page.goto(url);
+                console.log("Successfully navigates to chat.");
+                const textAreaSelector = "#typing > textarea";
+                await page.waitForSelector(textAreaSelector);
+                await page.type(textAreaSelector, "githubNktPluginsCD");
                 await page.keyboard.press("Enter");
-                await delay(3000);
-                await page.type(textAreaSelector, `Plugin '${name}' has been deployed.`);
+                console.log("Logging in...");
+                await delay(5000);
+                for (var i = 0; i < pluginsToUpdate.length; i++) {
+                    const { name, content } = pluginsToUpdate.pop();
+                    const command = "/plugin add " + name + " " + content;
+                    await page.type(textAreaSelector, command);
+                    await page.keyboard.press("Enter");
+                    await delay(3000);
+                    await page.type(textAreaSelector, `Plugin '${name}' has been deployed.`);
+                    await page.keyboard.press("Enter");
+                    await delay(2000);
+                    console.log(`Plugin '${name}' successfully deployed.`);
+                }
+                await page.type(textAreaSelector, "Enjoy your new plugins !");
                 await page.keyboard.press("Enter");
                 await delay(2000);
-                console.log(`Plugin '${name}' successfully deployed.`);
-            }
-            await page.type(textAreaSelector, "Enjoy your new plugins !");
-            await page.keyboard.press("Enter");
-            await delay(2000);
-            await browser.close();
-        })();
-    }
+                await browser.close();
+            })();
+        }
+    });
 }
