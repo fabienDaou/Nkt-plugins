@@ -1,0 +1,15 @@
+{
+  "name": "nkt-plugins",
+  "version": "0.0.1",
+  "description": "Bunch of plugins load in Nkt chat (see https://github.com/qr7hur/nkt)",
+  "dependencies": {},
+  "devDependencies": {
+    "jshint": "^2.11.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "jshint ./plugins"
+  },
+  "author": "Fabien Daoulas",
+  "license": "ISC"
+}

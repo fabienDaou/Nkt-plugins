@@ -47,7 +47,7 @@ $.plugin({
                 g: average / length,
                 b: average / length,
             };
-        }
+        };
 
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 
@@ -102,4 +102,4 @@ $.plugin({
         document.getElementById("hiddenCanvas").remove();
         document.getElementById("outputCanvas").remove();
     }
-})
+});

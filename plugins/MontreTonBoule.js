@@ -96,8 +96,8 @@ $.plugin({
             return grayScales;
         };
 
-        const MAXIMUM_WIDTH = 80;
-        const MAXIMUM_HEIGHT = 80;
+        const MAXIMUM_WIDTH = 40;
+        const MAXIMUM_HEIGHT = 40;
 
         const clampDimensions = (width, height) => {
             const rectifiedWidth = Math.floor(getFontRatio() * width);
@@ -142,4 +142,4 @@ $.plugin({
         document.getElementById("hiddenCanvas").remove();
         document.getElementById("ascii").remove();
     }
-})
+});
