@@ -38,9 +38,11 @@ var branchName = process.argv[2];
 if (!branchName) {
     throw new Error("A branch name should be specified.");
 }
+run("git status", function (err, stdout, stderr) {
+    console.log(stdout);
+});
 run(`git diff --diff-filter=MA --name-only ${branchName} ${branchName}~`, function (err, stdout, stderr) {
     if (err) {
-        console.log(stderr);
         throw new Error(stderr);
     }
     var filePaths = stdout.split("\n");
