@@ -38,22 +38,22 @@ var branchName = process.argv[2];
 if (!branchName) {
     throw new Error("A branch name should be specified.");
 }
-run("git status", function (err, stdout, stderr) {
-    console.log(stdout);
-    run(`git rev-parse ${branchName}`, function (err, stdout, stderr) {
-        console.log("SHA: " + stdout);
-        run(`git diff --diff-filter=MA --name-only ${branchName} ${branchName}~`, function (err, stdout, stderr) {
-            if (err) {
-                throw new Error(stderr);
-            }
-            var filePaths = stdout.split("\n");
-            filePaths.filter(file => file.startsWith("plugins/")).forEach(file => {
-                console.log("Copying " + file + " ...");
-                var fileName = file.substring(file.lastIndexOf("/"), file.length);
-                fs.copyFileSync(file, "out/" + fileName);
-                console.log("Copying " + file + " done!");
-            });
-            console.log("Done copying plugins!");
+run(`git rev-parse ${branchName}`, function (err, sha, stderr) {
+    if (stderr) {
+        throw new Error(stderr);
+    }
+
+    run(`git diff --diff-filter=MA --name-only ${sha} ${sha}~`, function (err, stdout, stderr) {
+        if (err) {
+            throw new Error(stderr);
+        }
+        var filePaths = stdout.split("\n");
+        filePaths.filter(file => file.startsWith("plugins/")).forEach(file => {
+            console.log("Copying " + file + " ...");
+            var fileName = file.substring(file.lastIndexOf("/"), file.length);
+            fs.copyFileSync(file, "out/" + fileName);
+            console.log("Copying " + file + " done!");
         });
+        console.log("Done copying plugins!");
     });
 });
