@@ -1,5 +1,6 @@
 # Nkt-plugins
 ![Check Nkt-plugins](https://github.com/fabienDaou/Nkt-plugins/workflows/Check%20Nkt-plugins/badge.svg?branch=master)
+![Deploy Nkt plugins](https://github.com/fabienDaou/Nkt-plugins/workflows/Deploy%20Nkt%20plugins/badge.svg?branch=master)
 
 This a list of plugins compatible with [Nkt chat](https://github.com/qr7hur/nkt).
 
