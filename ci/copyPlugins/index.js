@@ -40,6 +40,7 @@ if (!branchName) {
 }
 run(`git diff --diff-filter=MA --name-only ${branchName} ${branchName}~`, function (err, stdout, stderr) {
     if (err) {
+        console.log(stderr);
         throw new Error(stderr);
     }
     var filePaths = stdout.split("\n");
