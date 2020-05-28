@@ -1,6 +1,6 @@
 $.plugin({
     name: "MontreTonBoule",
-    description: "This plugin is getting the webcam stream and outputing ascii art. All users connected to the chat can view the transformed stream.",
+    description: "This plugin is getting the webcam stream and outputing ascii art. All users connected to the chat can view the transformed stream. test",
     videoNodeId: "videoDaou",
     stopPlaying: false,
     init: function () {
