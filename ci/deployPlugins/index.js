@@ -6,7 +6,11 @@ function delay(time) {
         setTimeout(resolve, time)
     });
 }
+
 console.log("Starting deploy to chat...");
+
+const url = process.argv[2];
+
 if (!fs.existsSync("out")) {
     console.log("No 'out' folder, no plugins to deploy.");
 }
@@ -28,7 +32,7 @@ else {
         (async () => {
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
-            await page.goto("https://nkt.herokuapp.com/");
+            await page.goto(url);
             const textAreaSelector = "#typing > textarea";
             await page.waitForSelector(textAreaSelector);
             await page.type(textAreaSelector, "githubNktPluginsCD");
