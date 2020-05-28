@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "jshint ./plugins",
-    "copyPlugins": "node ./ci/copyPlugins/index.js"
+    "copyPlugins": "node ./ci/copyPlugins/index.js master"
   },
   "author": "Fabien Daoulas",
   "license": "ISC"
