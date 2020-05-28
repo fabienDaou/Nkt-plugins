@@ -3,4 +3,4 @@ $.plugin({
     init: function(){
         console.log("deployment succesful!");
     }
-})
+});
