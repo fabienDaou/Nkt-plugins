@@ -48,6 +48,10 @@ run(`git rev-parse ${branchName}`, function (err, sha, stderr) {
             throw new Error(stderr);
         }
         var filePaths = stdout.split("\n");
+        
+        if (!fs.existsSync("out")){
+            fs.mkdirSync("out");
+        }
         filePaths.filter(file => file.startsWith("plugins/")).forEach(file => {
             console.log("Copying " + file + " ...");
             var fileName = file.substring(file.lastIndexOf("/"), file.length);
