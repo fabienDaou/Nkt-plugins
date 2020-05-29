@@ -15,16 +15,25 @@ module.exports = async function (context, req) {
         return;
     }
 
+    context.log("Validating plugin code...");
     const { body } = req;
     jshint(body, { esversion: 6 });
     if (jshint.errors && jshint.errors.length === 0) {
+        
+        context.log("Plugin code validated.");
 
         cloneGitRepository();
+
+        context.log("Repository cloned.");
 
         const name = req.query.name;
         updatePluginFileContent(name, body);
 
+        context.log("Plugin file updated.");
+
         commitAndPushUpdate(name);
+
+        context.log("Plugin commited and pushed.");
 
         context.res = {
             status: 200
