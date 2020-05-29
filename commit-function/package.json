@@ -6,7 +6,10 @@
     "start": "func start",
     "check": "jshint commitTrigger/index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^9.0.0",
+    "jshint": "^2.11.1"
+  },
   "devDependencies": {
     "jshint": "^2.11.1"
   }
