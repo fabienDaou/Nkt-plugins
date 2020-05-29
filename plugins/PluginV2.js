@@ -1,6 +1,5 @@
 $.plugin({
     name: "PluginV2",
-
     onSend: function (message) {
         const command = "exepluginv2 commit ";
         if (message.startsWith(command)) {
@@ -16,13 +15,12 @@ $.plugin({
                     url: 'https://nktpluginscommit.azurewebsites.net/api/commitTrigger?name=' + name,
                     success: function (data) {
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
-                            $.chat.send('<script>' + file + '</script>');
+                            $.chat.send('<script>' + content + '</script>');
                             $.chat.send('/me commited a valid plugin ' + name + ', a bot will apply the changes soon.');
                         });
                     },
                     error: function (xhr) {
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
-                            $.chat.send('<script>' + file + '</script>');
                             $.chat.send('/me, you have an invalid commit, here are the errors: ' + xhr.responseText);
                         });
                     }
