@@ -1,5 +1,6 @@
 $.plugin({
     name: "PluginV2",
+
     onSend: function (message) {
         const command = "exepluginv2 commit ";
         if (message.startsWith(command)) {
