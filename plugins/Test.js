@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function(){
-    	console.log("last test before takeoff");
+    	console.log("updated directly from azure !!!");
     }
 });
