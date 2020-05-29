@@ -3,10 +3,14 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 var fsExtra = require("fs-extra");
 
-module.exports = async function (context, req) {
-    const validations = [validateName, validateContentType, validateBodyNotEmpty];
+const NKTPLUGINS_REPO_PATH = "D:\\local\\Temp";
 
-    const validationErrors = validations.filter(validator => validator(req).response === false).map(result => result.error);
+module.exports = async function (context, req) {
+    const validators = [validateName, validateContentType, validateBodyNotEmpty];
+
+    const validationResults = validators.map(validator => validator(req));
+    const validationErrorResults = validationResults.filter(validationResult => validationResult.result === false);
+    const validationErrors = validationErrorResults.map(result => result.error);
 
     if (validationErrors.length > 0) {
         context.res = {
@@ -32,7 +36,7 @@ module.exports = async function (context, req) {
 
         context.log("Plugin file updated.");
 
-        commitAndPushUpdate(name, context);
+        commitAndPushUpdate(name);
 
         context.log("Plugin commited and pushed.");
 
@@ -47,9 +51,8 @@ module.exports = async function (context, req) {
     }
 };
 
-const commitAndPushUpdate = (name, context) => {
-    context.log("Does repo exists? " + fsExtra.existsSync("D:\\local\\Temp\\nktPlugins"));
-    const options = { cwd: "D:\\local\\Temp\\nktPlugins", timeout: 10000 };
+const commitAndPushUpdate = name => {
+    const options = { cwd: NKTPLUGINS_REPO_PATH + "\\nktPlugins", timeout: 10000 };
     execSync("git config user.name \"commitFunction\"", options);
     execSync("git config user.email \"none@none.com\"", options);
     execSync("git add -A", options);
@@ -58,7 +61,7 @@ const commitAndPushUpdate = (name, context) => {
 };
 
 const updatePluginFileContent = (name, content, context) => {
-    const filePath = "D:\\local\\Temp\\nktPlugins\\plugins\\" + name + ".js";
+    const filePath = NKTPLUGINS_REPO_PATH + "\\nktPlugins\\plugins\\" + name + ".js";
 
     context.log("Checking existence of file " + filePath);
 
@@ -83,9 +86,9 @@ const cloneGitRepository = () => {
     const credentials = userEnv + ":" + personalAccessTokenEnv;
 
     // ensures there is no lingering repository
-    fsExtra.removeSync("D:\\local\\Temp\\nktPlugins");
+    fsExtra.removeSync(NKTPLUGINS_REPO_PATH + "\\nktPlugins");
 
-    execSync("git clone -b master https://" + credentials + "@github.com/fabienDaou/Nkt-plugins.git %TMP%\\nktPlugins --depth=1");
+    execSync("git clone -b master https://" + credentials + "@github.com/fabienDaou/Nkt-plugins.git " + NKTPLUGINS_REPO_PATH + "\\nktPlugins --depth=1");
 };
 
 const validateBodyNotEmpty = request => {
@@ -107,10 +110,11 @@ const validateContentType = request => {
 };
 
 const validateName = (request) => {
-    return request.query.name && request.query.name.match("/^[A-Za-z]+$/") ?
+    const lettersAndNumbers = /^[0-9a-zA-Z]+$/;
+    return request.query.name && request.query.name.match(lettersAndNumbers) ?
         { result: true } :
         {
             result: false,
-            error: "Must pass a valid name, only not empty names and a-z and A-Z characters are allowed."
+            error: "Must pass a valid name, only not empty names and a-z, A-Z and 0-9 characters are allowed."
         };
 };
