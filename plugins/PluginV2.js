@@ -1,5 +1,8 @@
 $.plugin({
     name: "PluginV2",
+    init: function(){
+        $.chat.send("New plugin management is in alpha, prefer using the new command 'exepluginv2 commit <pluginname> <plugincode>' over '/plugin add'");
+    },
     onSend: function (message) {
         const command = "exepluginv2 commit ";
         if (message.startsWith(command)) {
