@@ -24,7 +24,7 @@ $.plugin({
                     },
                     error: function (xhr) {
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
-                            $.chat.send('/me, you have an invalid commit, here are the errors: ' + xhr.responseText);
+                            $.chat.send('You have an invalid commit, here are the errors: ' + xhr.responseText);
                         });
                     }
                 });
