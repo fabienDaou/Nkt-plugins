@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function(){
-    	console.log("arthur ca marche * 2");
+    	console.log("last test before takeoff");
     }
 });
