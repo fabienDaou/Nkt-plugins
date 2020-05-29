@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function(){
-    	console.log("updated directly from azure !!!");
+    	console.log("updated directly from nkt !!!");
     }
 });
