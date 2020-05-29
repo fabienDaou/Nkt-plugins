@@ -1,10 +1,10 @@
 $.plugin({
     name: "PluginV2",
     init: function(){
-        $.chat.send("New plugin management is in alpha, prefer using the new command 'exepluginv2 commit <pluginname> <plugincode>' over '/plugin add'");
+        $.chat.send("New plugin management is in alpha, prefer using the new command 'execpluginv2 commit [pluginname] [plugincode]' over '/plugin add'");
     },
     onSend: function (message) {
-        const command = "exepluginv2 commit ";
+        const command = "execpluginv2 commit ";
         if (message.startsWith(command)) {
             const nameAndContent = message.substring(command.length).trim();
             const name = nameAndContent.substring(0, nameAndContent.indexOf(" "));
