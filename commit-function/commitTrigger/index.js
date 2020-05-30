@@ -6,7 +6,7 @@ var fsExtra = require("fs-extra");
 const NKTPLUGINS_REPO_PATH = "D:\\local\\Temp";
 
 module.exports = async function (context, req) {
-    const validators = [validateName, validateContentType, validateBodyNotEmpty];
+    const validators = [validateNamePattern, validateNameLength, validateContentType, validateBodyNotEmpty];
 
     const validationResults = validators.map(validator => validator(req));
     const validationErrorResults = validationResults.filter(validationResult => validationResult.result === false);
@@ -21,6 +21,7 @@ module.exports = async function (context, req) {
     }
 
     context.log("Validating plugin code...");
+
     const { body } = req;
     jshint(body, { esversion: 6 });
     if (jshint.errors && jshint.errors.length === 0) {
@@ -109,12 +110,22 @@ const validateContentType = request => {
         };
 };
 
-const validateName = (request) => {
+const validateNamePattern = request => {
     const lettersAndNumbers = /^[0-9a-zA-Z]+$/;
     return request.query.name && request.query.name.match(lettersAndNumbers) ?
         { result: true } :
         {
             result: false,
             error: "Must pass a valid name, only not empty names and a-z, A-Z and 0-9 characters are allowed."
+        };
+};
+
+const validateNameLength = request => {
+    const maxNameLength = 25;
+    return request.query.name && request.query.name.length < maxNameLength ?
+        { result: true } :
+        {
+            result: false,
+            error: `Length of plugin name must be less than ${maxNameLength}.`
         };
 };
