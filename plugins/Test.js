@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
-    init: function(){
-    	console.log("updated directly from nkt !!!");
+    init: function () {
+        console.log("test update after function update.");
     }
 });
