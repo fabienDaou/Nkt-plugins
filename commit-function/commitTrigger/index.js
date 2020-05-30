@@ -1,7 +1,7 @@
 const jshint = require("jshint").JSHINT;
-const { execSync } = require("child_process");
-const fs = require("fs");
-var fsExtra = require("fs-extra");
+const { exec } = require("child_process");
+const fs = require("fs").promises;
+const fsExtra = require("fs-extra");
 
 const NKTPLUGINS_REPO_PATH = "D:\\local\\Temp";
 
@@ -28,16 +28,16 @@ module.exports = async function (context, req) {
 
         context.log("Plugin code validated.");
 
-        cloneGitRepository();
+        await cloneGitRepository();
 
         context.log("Repository cloned.");
 
         const name = req.query.name;
-        updatePluginFileContent(name, body, context);
+        await updatePluginFileContent(name, body, context);
 
         context.log("Plugin file updated.");
 
-        commitAndPushUpdate(name);
+        await commitAndPushUpdate(name);
 
         context.log("Plugin commited and pushed.");
 
@@ -52,44 +52,44 @@ module.exports = async function (context, req) {
     }
 };
 
-const commitAndPushUpdate = name => {
+const commitAndPushUpdate = async name => {
     const options = { cwd: NKTPLUGINS_REPO_PATH + "\\nktPlugins", timeout: 10000 };
-    execSync("git config user.name \"commitFunction\"", options);
-    execSync("git config user.email \"none@none.com\"", options);
-    execSync("git add -A", options);
-    execSync("git commit -m \"Plugin " + name + " updated.\"", options);
-    execSync("git push", options);
+    await executeCommand("git config user.name \"commitFunction\"", options);
+    await executeCommand("git config user.email \"none@none.com\"", options);
+    await executeCommand("git add -A", options);
+    await executeCommand("git commit -m \"Plugin " + name + " updated.\"", options);
+    await executeCommand("git push", options);
 };
 
-const updatePluginFileContent = (name, content, context) => {
+const updatePluginFileContent = async (name, content, context) => {
     const filePath = NKTPLUGINS_REPO_PATH + "\\nktPlugins\\plugins\\" + name + ".js";
 
     context.log("Checking existence of file " + filePath);
 
-    if (fs.existsSync(filePath)) {
+    if (await fsExtra.pathExists(filePath)) {
         context.log(filePath + " exists, removing it...");
 
-        fs.unlinkSync(filePath);
+        await fs.unlink(filePath);
 
         context.log(filePath + " removed.");
     }
 
     context.log("Writing to " + filePath + "...");
 
-    fs.writeFileSync(filePath, content);
+    await fs.writeFile(filePath, content);
 
     context.log("Writing operation done.");
 };
 
-const cloneGitRepository = () => {
+const cloneGitRepository = async () => {
     const userEnv = process.env.NktPluginsUserName;
     const personalAccessTokenEnv = process.env.NktPluginsPersonalAccessToken;
     const credentials = userEnv + ":" + personalAccessTokenEnv;
 
     // ensures there is no lingering repository
-    fsExtra.removeSync(NKTPLUGINS_REPO_PATH + "\\nktPlugins");
+    await fsExtra.remove(NKTPLUGINS_REPO_PATH + "\\nktPlugins");
 
-    execSync("git clone -b master https://" + credentials + "@github.com/fabienDaou/Nkt-plugins.git " + NKTPLUGINS_REPO_PATH + "\\nktPlugins --depth=1");
+    await executeCommand("git clone -b master https://" + credentials + "@github.com/fabienDaou/Nkt-plugins.git " + NKTPLUGINS_REPO_PATH + "\\nktPlugins --depth=1");
 };
 
 const validateBodyNotEmpty = request => {
@@ -129,3 +129,14 @@ const validateNameLength = request => {
             error: `Length of plugin name must be less than ${maxNameLength}.`
         };
 };
+
+const executeCommand = async (command, options) => {
+    return new Promise((resolve, reject) => {
+        exec(command, options, (error, stdout, stderr) => {
+            if (error) {
+                reject(stderr)
+            }
+            resolve();
+        });
+    });
+}
