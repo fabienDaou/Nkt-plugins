@@ -30,7 +30,7 @@ else {
                 content: fs.readFileSync("out/" + file, "utf-8").toString()
             })
         });
-        
+
         if (pluginsToUpdate.length > 0) {
             (async () => {
                 const browser = await puppeteer.launch();
@@ -45,7 +45,17 @@ else {
                 await delay(3000);
                 for (var i = 0; i < pluginsToUpdate.length; i++) {
                     const { name, content } = pluginsToUpdate.pop();
-                    await clipboardy.write(`/plugin add ${name} ${content}`).catch(reason => core.setFailed(`Cannot write to clipboard: ${reason}`));
+                    try {
+                        await clipboardy.write(`/plugin add ${name} ${content}`);
+                    } catch (e) {
+                        core.setFailed(`Cannot write to clipboard: ${e}`);
+
+                        await page.type(textAreaSelector, `Failed to deploy ${name}.`);
+                        await page.keyboard.press("Enter");
+                        await delay(1000);
+                        await browser.close();
+                        return;
+                    }
 
                     await page.click(textAreaSelector);
 
@@ -60,7 +70,7 @@ else {
                 }
                 await page.type(textAreaSelector, "Enjoy your new plugins !");
                 await page.keyboard.press("Enter");
-                await delay(2000);
+                await delay(1000);
                 await browser.close();
             })();
         }
