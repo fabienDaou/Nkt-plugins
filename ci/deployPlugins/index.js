@@ -44,12 +44,12 @@ else {
                 await delay(3000);
                 for (var i = 0; i < pluginsToUpdate.length; i++) {
                     const { name, content } = pluginsToUpdate.pop();
-                    await clipboardy.write(`/plugin add ${name} ${content}`);
+                    await clipboardy.write(`/plugin add ${name} ${content}`).catch(reason => console.log(`Cannot write to clipboard: ${reason}`));
 
                     await page.click(textAreaSelector);
 
                     await page.keyboard.down('Control');
-                    await page.keyboard.press('KeyV');
+                    await page.keyboard.press('KeyV').catch(reason => console.log(`Cannot press V: ${reason}`));
                     await page.keyboard.up('Control');
                     await page.keyboard.press("Enter");
 
