@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const clipboardy = require("clipboardy");
 const fs = require("fs");
 
 function delay(time) {
@@ -25,7 +26,7 @@ else {
             console.log(`Plugin '${name}' queued for deployment.`);
             pluginsToUpdate.push({
                 name,
-                content: fs.readFileSync("out/" + file, "utf-8").replace(/(\r)/gm, "")
+                content: fs.readFileSync("out/" + file, "utf-8").toString()
             })
         });
         
@@ -43,8 +44,9 @@ else {
                 await delay(5000);
                 for (var i = 0; i < pluginsToUpdate.length; i++) {
                     const { name, content } = pluginsToUpdate.pop();
-                    const command = "/plugin add " + name + " " + content;
-                    await page.type(textAreaSelector, command);
+                    await clipboardy.write(`/plugin add ${name} ${content}`);
+                    await page.click(textAreaSelector);
+                    await clipboardy.read();
                     await page.keyboard.press("Enter");
                     await delay(3000);
                     console.log(`Plugin '${name}' successfully deployed.`);
