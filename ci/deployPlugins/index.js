@@ -50,10 +50,6 @@ else {
                         }, textAreaSelector, `/plugin add ${name} ${content}`);
 
                         await page.click(textAreaSelector);
-
-                        await page.keyboard.down('Control');
-                        await page.keyboard.press('KeyV');
-                        await page.keyboard.up('Control');
                         await page.keyboard.press("Enter");
 
                         await delay(3000);
