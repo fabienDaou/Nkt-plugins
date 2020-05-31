@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-      npm install
-      npm run check
-      npm run copyPlugins
-      npm run deploy ${{ secrets.NKT_CHAT_URL }}
+        npm install
+        npm run check
+        npm run copyPlugins
+        npm run deploy ${{ secrets.NKT_CHAT_URL }}
