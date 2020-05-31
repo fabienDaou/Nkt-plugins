@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Deploy with puppeteer
-    - run: |
+      run: |
         sudo apt install xsel
         npm install
         npm run check
