@@ -139,4 +139,4 @@ const executeCommand = async (command, options) => {
             resolve();
         });
     });
-}
+};
