@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function () {
-        console.log("finally...");
+        console.log("test new token");
     }
 });
