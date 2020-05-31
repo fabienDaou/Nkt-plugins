@@ -17,6 +17,8 @@ jobs:
         node-version: [13.3.0]
 
     steps:
+    - name: Install xsel for clipboardy
+      run: sudo apt install xsel
     - uses: actions/checkout@master
       with:
        fetch-depth: 2
