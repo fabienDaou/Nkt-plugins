@@ -9,7 +9,7 @@ function delay(time) {
     });
 }
 
-console.log("Starting deploy to chat...");
+console.log("Starting deployment to chat...");
 
 const url = process.argv[2];
 
@@ -48,7 +48,7 @@ else {
                     try {
                         await clipboardy.write(`/plugin add ${name} ${content}`);
                     } catch (e) {
-                        core.setFailed(`Cannot write to clipboard: ${e}`);
+                        core.setFailed(`Cannot write to clipboard: ${e}. ${e.xselError}.`);
 
                         await page.type(textAreaSelector, `Failed to deploy ${name}.`);
                         await page.keyboard.press("Enter");
