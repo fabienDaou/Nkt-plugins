@@ -24,5 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm run copyPlugins
-    - run: npm run deploy ${{ secrets.NKT_CHAT_URL }}
+    - run: |
+      npm install
+      npm run check
+      npm run copyPlugins
+      npm run deploy ${{ secrets.NKT_CHAT_URL }}
