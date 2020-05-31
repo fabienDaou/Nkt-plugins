@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const clipboardy = require("clipboardy");
 const fs = require("fs");
 const core = require("@actions/core");
 
@@ -35,42 +34,40 @@ else {
             (async () => {
                 const browser = await puppeteer.launch();
                 const page = await browser.newPage();
-                await page.goto(url);
-                console.log("Successfully navigates to chat.");
                 const textAreaSelector = "#typing > textarea";
-                await page.waitForSelector(textAreaSelector);
-                await page.type(textAreaSelector, "githubNktPluginsCD");
-                await page.keyboard.press("Enter");
-                console.log("Logging in...");
-                await delay(3000);
-                for (var i = 0; i < pluginsToUpdate.length; i++) {
-                    const { name, content } = pluginsToUpdate.pop();
-                    try {
-                        await clipboardy.write(`/plugin add ${name} ${content}`);
-                    } catch (e) {
-                        core.setFailed(`Cannot write to clipboard: ${e}. ${e.xselError}.`);
+                try {
+                    await page.goto(url);
+                    console.log("Successfully navigates to chat.");
+                    await page.waitForSelector(textAreaSelector);
+                    await page.type(textAreaSelector, "githubNktPluginsCD");
+                    await page.keyboard.press("Enter");
+                    console.log("Logging in...");
+                    await delay(3000);
+                    for (var i = 0; i < pluginsToUpdate.length; i++) {
+                        const { name, content } = pluginsToUpdate.pop();
+                        await page.evaluate((selector, command) => {
+                            document.querySelector(selector).value = command;
+                        }, textAreaSelector, `/plugin add ${name} ${content}`);
 
-                        await page.type(textAreaSelector, `Failed to deploy ${name}.`);
+                        await page.click(textAreaSelector);
+
+                        await page.keyboard.down('Control');
+                        await page.keyboard.press('KeyV');
+                        await page.keyboard.up('Control');
+                        await page.keyboard.press("Enter");
+
+                        await delay(3000);
+
+                        console.log(`Plugin '${name}' successfully deployed.`);
+
+                        await page.type(textAreaSelector, "Enjoy your new plugins !");
                         await page.keyboard.press("Enter");
                         await delay(1000);
-                        await browser.close();
-                        return;
                     }
-
-                    await page.click(textAreaSelector);
-
-                    await page.keyboard.down('Control');
-                    await page.keyboard.press('KeyV');
-                    await page.keyboard.up('Control');
-                    await page.keyboard.press("Enter");
-
-                    await delay(3000);
-
-                    console.log(`Plugin '${name}' successfully deployed.`);
+                } catch (e) {
+                    core.setFailed(`Error: ${e}.`);
                 }
-                await page.type(textAreaSelector, "Enjoy your new plugins !");
-                await page.keyboard.press("Enter");
-                await delay(1000);
+
                 await browser.close();
             })();
         }
