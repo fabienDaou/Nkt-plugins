@@ -41,14 +41,20 @@ else {
                 await page.type(textAreaSelector, "githubNktPluginsCD");
                 await page.keyboard.press("Enter");
                 console.log("Logging in...");
-                await delay(5000);
+                await delay(3000);
                 for (var i = 0; i < pluginsToUpdate.length; i++) {
                     const { name, content } = pluginsToUpdate.pop();
                     await clipboardy.write(`/plugin add ${name} ${content}`);
+
                     await page.click(textAreaSelector);
-                    await clipboardy.read();
+
+                    await page.keyboard.down('Control');
+                    await page.keyboard.press('KeyV');
+                    await page.keyboard.up('Control');
                     await page.keyboard.press("Enter");
+
                     await delay(3000);
+
                     console.log(`Plugin '${name}' successfully deployed.`);
                 }
                 await page.type(textAreaSelector, "Enjoy your new plugins !");
