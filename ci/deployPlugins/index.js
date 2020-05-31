@@ -25,7 +25,7 @@ else {
             console.log(`Plugin '${name}' queued for deployment.`);
             pluginsToUpdate.push({
                 name,
-                content: fs.readFileSync("out/" + file, "utf-8").toString()
+                content: fs.readFileSync("out/" + file, "utf-8").replace(/(\r)/gm, "")
             })
         });
         
