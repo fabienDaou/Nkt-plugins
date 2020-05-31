@@ -121,12 +121,13 @@ const validateNamePattern = request => {
 };
 
 const validateNameLength = request => {
+    const minNameLength = 2;
     const maxNameLength = 25;
-    return request.query.name && request.query.name.length < maxNameLength ?
+    return request.query.name && request.query.name.length >= minNameLength && request.query.name.length <= maxNameLength ?
         { result: true } :
         {
             result: false,
-            error: `Length of plugin name must be less than ${maxNameLength}.`
+            error: `Length of plugin name must be in range [${minNameLength}, ${maxNameLength}].`
         };
 };
 
