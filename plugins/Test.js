@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function () {
-        console.log("with clipboardy.");
+        console.log("with ctrl+v.");
     }
 });
