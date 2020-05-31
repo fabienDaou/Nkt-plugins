@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function () {
-        console.log("with ctrl+v and xsel and logs.");
+        console.log("with ctrl+v and xsel and errors.");
     }
 });
