@@ -43,7 +43,7 @@ run(`git rev-parse ${branchName}`, function (err, sha, stderr) {
         throw new Error(stderr);
     }
     var cleanSha = sha.trim();
-    run(`git diff --diff-filter=MA --name-only ${cleanSha} ${cleanSha}~`, function (err, stdout, stderr) {
+    run(`git diff --diff-filter=MA --name-only ${cleanSha}~ ${cleanSha}`, function (err, stdout, stderr) {
         if (err) {
             throw new Error(stderr);
         }
