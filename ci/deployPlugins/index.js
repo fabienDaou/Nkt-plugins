@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 const clipboardy = require("clipboardy");
 const fs = require("fs");
+const core = require("@actions/core");
 
 function delay(time) {
     return new Promise(function (resolve) {
@@ -44,7 +45,7 @@ else {
                 await delay(3000);
                 for (var i = 0; i < pluginsToUpdate.length; i++) {
                     const { name, content } = pluginsToUpdate.pop();
-                    await clipboardy.write(`/plugin add ${name} ${content}`).catch(reason => console.error(`Cannot write to clipboard: ${reason}`));
+                    await clipboardy.write(`/plugin add ${name} ${content}`).catch(reason => core.setFailed(`Cannot write to clipboard: ${reason}`));
 
                     await page.click(textAreaSelector);
 
