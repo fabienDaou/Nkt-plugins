@@ -4,10 +4,13 @@ $.plugin({
         $.chat.send("New plugin management is in alpha, prefer using the new command 'execpluginv2 commit [pluginname] [plugincode]' over '/plugin add'");
     },
     onSend: function (message) {
-        const command = "execpluginv2 commit ";
-        if (message.startsWith(command)) {
-            const nameAndContent = message.substring(command.length).trim();
-            const name = nameAndContent.substring(0, nameAndContent.indexOf(" "));
+        const commitCommand = "execpluginv2 commit";
+        const publicCommand = commitCommand + " public ";
+        const privateCommand = commitCommand + " private ";
+        if (message.startsWith(publicCommand) || message.startsWith(privateCommand)) {
+            const isPrivate = message.startsWith(privateCommand);
+            const nameAndContent = message.substring(isPrivate ? privateCommand.length : publicCommand.length);
+            const name = nameAndContent.substring(0, nameAndContent.indexof(" "));
             const content = nameAndContent.substring(name.length + 1);
 
             try {
@@ -15,7 +18,7 @@ $.plugin({
                     type: 'POST',
                     data: content,
                     contentType: 'application/javascript',
-                    url: 'https://nktpluginscommit.azurewebsites.net/api/commit?name=' + name,
+                    url: 'https://nktpluginscommit.azurewebsites.net/api/commit?name=' + name + '&isPrivate=' + isPrivate,
                     success: function (data) {
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
                             $.chat.send('<script>' + content + '</script>');
