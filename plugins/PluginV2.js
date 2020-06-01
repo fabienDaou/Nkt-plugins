@@ -1,7 +1,8 @@
 $.plugin({
     name: "PluginV2",
     init: function () {
-        $.chat.send("New plugin management is in alpha, prefer using the new command 'execpluginv2 commit [pluginname] [plugincode]' over '/plugin add'");
+        $.chat.send("New plugin management is in alpha, prefer using the new command 'execpluginv2 commit [public|private] [pluginname] [plugincode]' over '/plugin add'.\n" +
+        "It is now possible to commit to a private repository. Prefer the private repository for sensitive plugins.");
     },
     onSend: function (message) {
         const commitCommand = "execpluginv2 commit";
@@ -10,7 +11,7 @@ $.plugin({
         if (message.startsWith(publicCommand) || message.startsWith(privateCommand)) {
             const isPrivate = message.startsWith(privateCommand);
             const nameAndContent = message.substring(isPrivate ? privateCommand.length : publicCommand.length);
-            const name = nameAndContent.substring(0, nameAndContent.indexof(" "));
+            const name = nameAndContent.substring(0, nameAndContent.indexOf(" "));
             const content = nameAndContent.substring(name.length + 1);
 
             try {
