@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "check": "jshint commitTrigger/index.js && jshint getAll/index.js"
+    "check": "jshint commit/index.js && jshint getAll/index.js"
   },
   "dependencies": {
     "fs-extra": "^9.0.0",

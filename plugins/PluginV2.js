@@ -15,7 +15,7 @@ $.plugin({
                     type: 'POST',
                     data: content,
                     contentType: 'application/javascript',
-                    url: 'https://nktpluginscommit.azurewebsites.net/api/commitTrigger?name=' + name,
+                    url: 'https://nktpluginscommit.azurewebsites.net/api/commit?name=' + name,
                     success: function (data) {
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
                             $.chat.send('<script>' + content + '</script>');
