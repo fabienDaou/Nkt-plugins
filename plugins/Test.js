@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function () {
-        console.log("new name");
+        console.log("to public");
     }
 });
