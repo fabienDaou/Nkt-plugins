@@ -1,6 +1,6 @@
 $.plugin({
     name: "Test",
     init: function () {
-        console.log("to public");
+        console.log("from nkt to public");
     }
 });
