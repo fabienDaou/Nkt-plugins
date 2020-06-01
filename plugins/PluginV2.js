@@ -1,7 +1,7 @@
 $.plugin({
     name: "PluginV2",
     init: function () {
-        $.chat.send("New plugin management is in alpha, prefer using the new command 'execpluginv2 commit [public|private] [pluginname] [plugincode]' over '/plugin add'.\n" +
+        $.chat.send("New plugin management is ready, prefer using the new command 'execpluginv2 commit [public|private] [pluginname] [plugincode]' over '/plugin add'.\n" +
             "It is now possible to commit to a private repository. Prefer the private repository for sensitive plugins.");
     },
     onSend: function (message) {
@@ -24,7 +24,7 @@ $.plugin({
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
                             $.chat.send('<script>' + content + '</script>');
                             const repositoryName = isPrivate ? 'private' : 'public';
-                            $.chat.send('/me commited a valid plugin ' + name + 'to the ' + repositoryName + ' repository, a bot will apply the changes soon.');
+                            $.chat.send('/me commited a valid plugin ' + name + ' to the ' + repositoryName + ' repository, a bot will apply the changes soon.');
                         });
                     },
                     error: function (xhr) {
