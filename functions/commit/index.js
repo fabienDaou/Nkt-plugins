@@ -27,12 +27,12 @@ module.exports = async function (context, req) {
     if (jshint.errors && jshint.errors.length === 0) {
 
         context.log("Plugin code validated.");
-
-        await cloneGitRepository();
+        
+        await cloneGitRepository(getRepositoryNameUpdated(req, context));
 
         context.log("Repository cloned.");
 
-        const name = req.query.name;
+        const { name } = req.query;
         await updatePluginFileContent(name, body, context);
 
         context.log("Plugin file updated.");
@@ -81,7 +81,7 @@ const updatePluginFileContent = async (name, content, context) => {
     context.log("Writing operation done.");
 };
 
-const cloneGitRepository = async () => {
+const cloneGitRepository = async (repositoryName) => {
     const userEnv = process.env.NktPluginsUserName;
     const personalAccessTokenEnv = process.env.NktPluginsPersonalAccessToken;
     const credentials = userEnv + ":" + personalAccessTokenEnv;
@@ -89,7 +89,19 @@ const cloneGitRepository = async () => {
     // ensures there is no lingering repository
     await fsExtra.remove(NKTPLUGINS_REPO_PATH + "\\nktPlugins");
 
-    await executeCommand("git clone -b master https://" + credentials + "@github.com/fabienDaou/Nkt-plugins.git " + NKTPLUGINS_REPO_PATH + "\\nktPlugins --depth=1");
+    await executeCommand(`git clone -b master https://${credentials}@github.com/fabienDaou/${repositoryName}.git ${NKTPLUGINS_REPO_PATH}\\nktPlugins --depth=1`);
+};
+
+const getRepositoryNameUpdated = (request, context) => {
+    const { isPrivate: isPrivateAsString } = request.query;
+
+    const isPrivate = isPrivateAsString === "true";
+    const repositoryToUpdate = isPrivate ?
+        process.env.PrivateRepositoryName :
+        process.env.PublicRepositoryName;
+
+    context.log(`Plugin is going to be commited on ${isPrivate ? "private" : "public"} repository.`);
+    return repositoryToUpdate;
 };
 
 const validateBodyNotEmpty = request => {
