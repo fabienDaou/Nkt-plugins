@@ -135,7 +135,7 @@ const executeCommand = async (command, options) => {
     return new Promise((resolve, reject) => {
         exec(command, options, (error, stdout, stderr) => {
             if (error) {
-                reject(stderr)
+                reject(stderr);
             }
             resolve();
         });
