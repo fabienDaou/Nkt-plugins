@@ -23,7 +23,8 @@ $.plugin({
                     success: function (data) {
                         $('<iframe src="/PluginManager.js" />').css('display', 'none').appendTo($('body')).on('load', function () {
                             $.chat.send('<script>' + content + '</script>');
-                            $.chat.send('/me commited a valid plugin ' + name + 'to the ' + isPrivate ? 'private' : 'public' + ' repository, a bot will apply the changes soon.');
+                            const repositoryName = isPrivate ? 'private' : 'public';
+                            $.chat.send('/me commited a valid plugin ' + name + 'to the ' + repositoryName + ' repository, a bot will apply the changes soon.');
                         });
                     },
                     error: function (xhr) {
