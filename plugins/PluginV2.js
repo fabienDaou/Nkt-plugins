@@ -1,8 +1,8 @@
 $.plugin({
     name: "PluginV2",
     init: function () {
-        $.chat.write("New plugin management is ready, prefer using the new command 'execpluginv2 commit [public|private] [pluginname] [plugincode]' over '/plugin add'.\n" +
-            "It is now possible to commit to a private repository. Prefer the private repository for sensitive plugins.", "");
+        /* $.chat.write("New plugin management is ready, prefer using the new command 'execpluginv2 commit [public|private] [pluginname] [plugincode]' over '/plugin add'.\n" +
+            "It is now possible to commit to a private repository. Prefer the private repository for sensitive plugins.", ""); */
     },
     onSend: function (message) {
         const commitCommand = "execpluginv2 commit";
