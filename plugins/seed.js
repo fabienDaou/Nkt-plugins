@@ -76,4 +76,4 @@ $.plugin({
             loadPluginsWhenNotLooking(plugins);
         });
     }
-});$.pluginApi.loadPlugin('seed');
+});setTimeout(()=>$.pluginApi.loadPlugin('seed'), 1);
