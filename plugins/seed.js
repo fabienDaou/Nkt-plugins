@@ -5,13 +5,19 @@ $.plugin({
             console.log(pluginName + " is loading...");
             $.pluginApi.loadPlugin(pluginName);
         };
-        //$.pluginApi.unloadPlugin('TalkBot');
-        loadAndLog('time');
-        loadAndLog('EyePopping');
-        loadAndLog('IRCcmd');
-        loadAndLog('removeBeta');
-        loadAndLog('EventHorizon');
-        loadAndLog('NewMsgTitle');
+        ////$.pluginApi.unloadPlugin('TalkBot');
+        //loadAndLog('time');
+        //loadAndLog('EyePopping');
+        //loadAndLog('IRCcmd');
+        //loadAndLog('removeBeta');
+        //loadAndLog('EventHorizon');
+        //loadAndLog('NewMsgTitle');
+$.pluginApi.loadPlugin('time');
+$.pluginApi.loadPlugin('EyePopping');
+$.pluginApi.loadPlugin('IRCcmd');
+$.pluginApi.loadPlugin('removeBeta');
+$.pluginApi.loadPlugin('EventHorizon');
+$.pluginApi.loadPlugin('NewMsgTitle');
 
         var plugins = [
             'summon',
