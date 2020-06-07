@@ -35,6 +35,8 @@ $.plugin({
                 } catch (e) { console.error(e); }
                 
             }
+                
+            $.pluginApi.loadPlugin('seed');
             break;
           default:
             console.log('Cannot understand message from iframe');
