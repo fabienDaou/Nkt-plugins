@@ -2,22 +2,16 @@ $.plugin({
     name: 'seed',
     init: function () {
         var loadAndLog = function (pluginName) {
-            console.log(pluginName + " is loading...");
-            $.pluginApi.loadPlugin(pluginName);
+            //console.log(pluginName + " is loading...");
+            try{$.pluginApi.loadPlugin(pluginName);}catch(e){}
         };
-        ////$.pluginApi.unloadPlugin('TalkBot');
-        //loadAndLog('time');
-        //loadAndLog('EyePopping');
-        //loadAndLog('IRCcmd');
-        //loadAndLog('removeBeta');
-        //loadAndLog('EventHorizon');
-        //loadAndLog('NewMsgTitle');
-$.pluginApi.loadPlugin('time');
-$.pluginApi.loadPlugin('EyePopping');
-$.pluginApi.loadPlugin('IRCcmd');
-$.pluginApi.loadPlugin('removeBeta');
-$.pluginApi.loadPlugin('EventHorizon');
-$.pluginApi.loadPlugin('NewMsgTitle');
+        //$.pluginApi.unloadPlugin('TalkBot');
+        loadAndLog('time');
+        loadAndLog('EyePopping');
+        loadAndLog('IRCcmd');
+        loadAndLog('removeBeta');
+        loadAndLog('EventHorizon');
+        loadAndLog('NewMsgTitle');
 
         var plugins = [
             'summon',
@@ -61,7 +55,7 @@ $.pluginApi.loadPlugin('NewMsgTitle');
             'neyBot',
             'noF5',
             'blindtest'];
-        for(let plugin of plugins) $.pluginApi.loadPlugin(plugin);
+        for(let plugin of plugins) loadAndLog(plugin);
         /*
         var loadPluginsWhenNotLooking = function (plugins) {
             if (plugins.length !== 0) {
