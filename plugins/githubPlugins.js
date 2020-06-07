@@ -26,21 +26,21 @@ $.plugin({
                 try {
                     try {
                         // JSON ?
-                        console.log('Trying plugin ' + plugin.name);
                         if (plugin.text.charAt(0) === '{') {
-                        console.log('plugin ' + plugin.name + ' is json');
-                        let json = JSON.parse(plugin.text);
-                        console.log('JSON of plugin ' + plugin.name + ' parsed ok');
-                        plugin.text = atob(json.content);}
-                    } catch(e) { console.log('error in json parsing or atobing');console.error(e);// Raw
+                            console.log('plugin ' + plugin.name + ' is json');
+                            let json = JSON.parse(plugin.text);
+                            console.log('JSON of plugin ' + plugin.name + ' parsed ok');
+                            plugin.text = atob(json.content);
+                        }
+                    } catch(e) {
+                        console.log('error in json parsing or atobing plugin ' + plugin.name);
+                        console.error(e);// Raw
                     } finally {
                         eval(plugin.text);
                     }
                 } catch (e) { console.error(e); }
                 
             }
-                
-            $.pluginApi.loadPlugin('seed');
             break;
           default:
             console.log('Cannot understand message from iframe');
