@@ -1,9 +1,9 @@
 $.plugin({
     name: 'githubPlugins',
     init: function() {
-      if ($.chat.githubPluginsListener) return;
-      $.chat.githubPluginsListener = window.addEventListener("message", this.receiveMessage, false);
-      $.chat.githubShas = {};
+      window.removeEventListener("message", $.chat.githubPluginsListener);
+      $.chat.githubPluginsListener = this.receiveMessage;
+      window.addEventListener("message", $.chat.githubPluginsListener, false);
       $('#plugin-container').prepend('<iframe id="githubPlugins" style="border:0;height:50px;width:200px" src="https://fabiendaou.github.io/index.html"></iframe>');
     },
     stop: function() {
@@ -21,7 +21,6 @@ $.plugin({
           case 'pluginsLoaded':
             for (let plugin of eventData.data) {
                 //console.log(plugin);
-                if (plugin.name.indexOf('githubPlugins') === 0) continue;
                 try {
                     try {
                         // JSON ?
