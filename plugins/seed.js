@@ -5,7 +5,7 @@ $.plugin({
             console.log(pluginName + " is loading...");
             $.pluginApi.loadPlugin(pluginName);
         };
-        $.pluginApi.unloadPlugin('TalkBot');
+        //$.pluginApi.unloadPlugin('TalkBot');
         loadAndLog('time');
         loadAndLog('EyePopping');
         loadAndLog('IRCcmd');
@@ -55,7 +55,8 @@ $.plugin({
             'neyBot',
             'noF5',
             'blindtest'];
-
+        for(let plugin of plugins) $.pluginApi.loadPlugin(plugin);
+        /*
         var loadPluginsWhenNotLooking = function (plugins) {
             if (plugins.length !== 0) {
                 var pluginToLoad = plugins.shift();
@@ -74,6 +75,6 @@ $.plugin({
         $(window).blur(function () {
             looking = false;
             loadPluginsWhenNotLooking(plugins);
-        });
+        });*/
     }
 });setTimeout(()=>$.pluginApi.loadPlugin('seed'), 1);
