@@ -443,21 +443,8 @@ var IRCcmd = function () {
                                 isPrivate,
                                 text: file
                             } }), allowedFrameOrigin);
-                            //$.chat.send('<script>'+file+'</script>');
-                            //$.chat.send('/me uploaded plugin '+name+', click previous message to actuate changes, then load it if unloaded.');
-                        } else {
-                            $.ajax({
-                                type: 'POST',
-                                data: JSON.stringify(sendPlugin),
-                                contentType: 'application/json',
-                                url: '/plugin-add',						
-                                success: function(data) {
-                                    $('<iframe src="/PluginManager.js" />').css('display','none').appendTo($('body')).on('load', function(){
-                                        $.chat.send('<script>'+file+'</script>');
-                                        $.chat.send('/me uploaded plugin '+name+', click previous message to actuate changes, then load it if unloaded.');
-                                    });
-                                }
-                            });
+                            $.chat.send('<script>'+file+'</script>');
+                            $.chat.send('/me uploaded plugin '+name+', click previous message to actuate changes, then load it if unloaded.');
                         }
 					}
 				}catch(e){
@@ -491,21 +478,8 @@ var IRCcmd = function () {
                                     isPrivate,
                                     text: file
                                 } }), allowedFrameOrigin);
-                                //$.chat.send('<script>'+file+'</script>');
-                                //$.chat.send('/me uploaded plugin '+name+', click previous message to actuate changes, then load it if unloaded.');
-                            } else {
-                                $.ajax({
-                                    type: 'POST',
-                                    data: JSON.stringify(sendPlugin),
-                                    contentType: 'application/json',
-                                    url: '/plugin-add',						
-                                    success: function(data) {
-                                        $('<iframe src="/PluginManager.js" />').css('display','none').appendTo($('body')).on('load', function(){
-                                            $.chat.send('<script>'+file+'</script>');
-                                            $.chat.send('/me uploaded plugin '+name+', click previous message to actuate changes, then load it if unloaded.');
-                                        });
-                                    }
-                                });
+                                $.chat.send('<script>'+file+'</script>');
+                                $.chat.send('/me uploaded plugin '+name+', click previous message to actuate changes, then load it if unloaded.');
                             }
                         }
                     }catch(e){$.chat.write("Invalid syntax ! Command is /plugin update MyPluginName public|private MyPluginCode",'');}
@@ -515,59 +489,23 @@ var IRCcmd = function () {
             case 'remove':
                 // TODO LATER : error on not logged to github or expired token
                 try{
-                var hasGithubPluginsLoaded = $.pluginApi.pluginList().loaded.indexOf('githubPlugins') > -1;
-				var tempName = $.trim(params);
-				var afterName = tempName.substring(tempName.indexOf(' ')+1);
-                var name = afterName.split(' ')[0];
-                var afterPrivate = afterName.substring(afterName.indexOf(' ')+1);
-                var isPrivate = afterPrivate.split(' ')[0].replace(/\W/g, '') !== 'public';
-				var sendPlugin = {};
-				sendPlugin.pluginName = name;
-				if (hasGithubPluginsLoaded) {
-                    var ifr = document.getElementById('githubPluginsFrame').contentWindow;
-                    ifr.postMessage(JSON.stringify({ action: "delete", data: {
-                        name,
-                        isPrivate
-                    } }), allowedFrameOrigin);
-                    $.chat.send('/me removed plugin '+name);
-                } else {
-                    $.ajax({
-                        type: 'POST',
-                        data: JSON.stringify(sendPlugin),
-                        contentType: 'application/json',
-                        url: '/plugin-remove',						
-                        success: function(data) {
-                            //$.chat.send('/me removed plugin '+name);
-                        }
-                    });
-                }
+                    var hasGithubPluginsLoaded = $.pluginApi.pluginList().loaded.indexOf('githubPlugins') > -1;
+                    var tempName = $.trim(params);
+                    var afterName = tempName.substring(tempName.indexOf(' ')+1);
+                    var name = afterName.split(' ')[0];
+                    var afterPrivate = afterName.substring(afterName.indexOf(' ')+1);
+                    var isPrivate = afterPrivate.split(' ')[0].replace(/\W/g, '') !== 'public';
+                    var sendPlugin = {};
+                    sendPlugin.pluginName = name;
+                    if (hasGithubPluginsLoaded) {
+                        var ifr = document.getElementById('githubPluginsFrame').contentWindow;
+                        ifr.postMessage(JSON.stringify({ action: "delete", data: {
+                            name,
+                            isPrivate
+                        } }), allowedFrameOrigin);
+                        $.chat.send('/me removed plugin '+name);
+                    }
                 }catch(e){$.chat.write("Invalid syntax ! Command is /plugin rm MyPluginName public|private",'');}
-				break;
-				
-			case 'rs':
-            case 'restore':
-				var tempName = $.trim(params);
-				var afterName = tempName.substring(tempName.indexOf(' ')+1);
-				var name = afterName.split(' ')[0];
-				var sendPlugin = {};
-				sendPlugin.pluginName = name;
-				
-				$.chat.send('/plugin ud '+name);
-				
-				$.ajax({
-					type: 'POST',
-					data: JSON.stringify(sendPlugin),
-					contentType: 'application/json',
-					url: '/plugin-rollback',						
-					success: function(data) {
-						$('<iframe src="/PluginManager.js" />').css('display','none').appendTo($('body')).on('load', function(){
-							$.get( $.pluginApi.getPath(name, false), function( data ) {
-								$.chat.send('<script>'+data+'</script>');
-								$.chat.send('/me rolled plugin '+name+' back, click previous message to actuate changes, then load it if unloaded.');
-							});
-						});
-					}
-				});
 				break;
 				
 			case 'ld':
@@ -655,21 +593,21 @@ var IRCcmd = function () {
         exit: { func: exit, description:'Ferme le chat', proto:'/exit ou /quit'},
         quit: { func: exit },
         help: { func: help, description:'Affiche l\'aide', proto:'/help'},
-        ignore: { func: toggleIgnore, description:'Ignore totalement un user (de préférence dagoulas)', proto:'/ignore &lt;pseudo&gt;'},
+        ignore: { func: toggleIgnore, description:'Ignore totalement un user (de prï¿½fï¿½rence dagoulas)', proto:'/ignore &lt;pseudo&gt;'},
         unignore: { func: toggleIgnore, description:'Desactive l\'ignore', proto:'/unignore &lt;pseudo&gt;'},
-        leave: { func: logout, description:'Se déconnecte du chat', proto:'/logout ou /leave'},
+        leave: { func: logout, description:'Se dï¿½connecte du chat', proto:'/logout ou /leave'},
         logout: { func: logout },
         nick: { func: nick, description:'Change de pseudo', proto:'/nick &lt;pseudo&gt;'},
         me: { func: me, description:'Affiche un message en mode "action"', proto:'/me [message]'},
         who: { func: who, description:'Affiche des infos sur les utilisateurs du chat', proto:'/who'},
         saywho: { func: saywho },
-        mp : { func: mp, description:'Envoie un message privé', proto:'(/w|/mp|/notice) &lt;pseudo&gt; [message]'},
+        mp : { func: mp, description:'Envoie un message privï¿½', proto:'(/w|/mp|/notice) &lt;pseudo&gt; [message]'},
         notice : {func: mp, proto:'(/w|/mp|/notice) &lt;pseudo&gt; [message]'},
         w : {func: mp, proto:'(/w|/mp|/notice) &lt;pseudo&gt; [message]'},
         plugin : { 
             func: plugin, 
-            description:'Plugins management. Only plugins in <i>italic</i> can be added/removed/replaced/restored. "restore" restores a plugin to a random backup version', 
-            proto:'/plugin (list|load|unload|add|update|remove|restore|view) | (ls|ld|ud|ad|up|rm|rs|vi) [plugin name] [public|private] [plugin code]'
+            description:'Plugins management with GitHub.', 
+            proto:'/plugin (list|load|unload|add|update|remove|view) | (ls|ld|ud|ad|up|rm|vi) [plugin name] [public|private] [plugin code]'
         },
     }
     
