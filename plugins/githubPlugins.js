@@ -26,8 +26,9 @@ $.plugin({
                 try {
                     try {
                         // JSON ?
+                        if (plugin.text.charAt(0) === '{') {
                         let json = JSON.parse(plugin.text);
-                        plugin = atob(json.content);
+                        plugin = atob(json.content);}
                     } catch(e) { // Raw
                     } finally {
                         eval(plugin.text);
