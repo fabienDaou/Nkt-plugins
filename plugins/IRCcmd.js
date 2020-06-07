@@ -1,5 +1,5 @@
 var IRCcmd = function () {
-    /* name: 'IRCcmd',*/*
+    /* name: 'IRCcmd',*/
     var _self = this;
     var _awayList = new Array();
     var _cmdList = {};
