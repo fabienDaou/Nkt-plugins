@@ -64,7 +64,6 @@ var chessPlugin = function () {
 
 	_self.onWrite = function(msg, nick) {
 		if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1) {
-			console.log(msg,nick);
 			if (msg.indexOf('°chessgame') > -1) {
 				if(msg.indexOf("init") > -1){
 					let opponent;
