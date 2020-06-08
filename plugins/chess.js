@@ -86,6 +86,18 @@ var chessPlugin = function () {
 						}
 					}
 					players = [$.chat.myNick(), opponent];
+					$.chat.write('  <style>'+
+					'.chess-board { border-spacing: 0; border-collapse: collapse; }'+
+					'.chess-board th { padding: .5em; }'+
+					'.chess-board td { border: 2px solid black; width: 2em; height: 2em; }'+
+					'.chess-board .light { background: #dad8d8; }'+
+					'.chess-board .dark { background: #2f99cc; }'+
+					'td{text-align:center;font-weight: bold;font-size: x-large;}'+
+					'.highlight{border: 3px solid #47ff95!important;}'+
+					'div[player="1"] {'+
+					'  color: white;'+
+					'}</style>'+
+					'<table class="chess-board"><tbody id="board"></tbody></table><div id="messages"></div><script>$.chat.generateBoard("'+$.chat.myNick()+'","'+opponent+'")</script>', "chessbot");
 					_self.generateBoard($.chat.myNick(),opponent);
 				}
 				else if(msg.indexOf("cancel") > -1){
