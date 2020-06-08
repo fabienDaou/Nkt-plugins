@@ -88,7 +88,7 @@ var chessPlugin = function () {
 						}
 					}
 					if(players[0] ===  $.chat.myNick()){return ""};
-					players = [$.chat.myNick(), opponent];
+					players = [opponent,$.chat.myNick()];
 					$.chat.write('  <style>'+
 					'.chess-board { border-spacing: 0; border-collapse: collapse; }'+
 					'.chess-board th { padding: .5em; }'+
@@ -108,6 +108,7 @@ var chessPlugin = function () {
 					//todo clear board
 				}
 				else if(msg.indexOf("state") > -1){
+					console.log("[chess] : board state update.")
 					if(players[0] ===  $.chat.myNick()){return ""};
 					var newMove = msg.split(' ')[2];
 					const regex = /([a-h][1-8])([a-h][1-8])/gi;	
@@ -115,6 +116,7 @@ var chessPlugin = function () {
 					var match = regex.exec(content);
 					if (match){
 						_self.updateBoard(match[1],match[2]);
+						console.log("[chess] : board state update. completed.")
 					}
 					//update board state
 					var playerIndex = players.indexOf($.chat.myNick());
