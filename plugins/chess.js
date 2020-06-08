@@ -117,15 +117,16 @@ var chessPlugin = function () {
 					var match = regex.exec(msg);
 					console.log(match)
 					if (match){
+						//update board state
 						_self.updateBoard(match[1],match[2]);
 						console.log("[chess] : board state update. completed.")
 					}
-					//update board state
+					//Get current player index
 					var playerIndex = players.indexOf($.chat.myNick());
-					
+					//Increment index turn to allow next player to play
 					if(playerIndex){
 						//currentPlayer = ""+(IndexOf( _self.players, $.chat.myNick())+1);
-						currentPlayer = (1 + (playerIndex + 1) % players.length).toString();
+						currentPlayer = (1 + (playerIndex + 2) % players.length).toString();
 					}
 					//board state is sent after the piece is droped from a player				
 				}
@@ -402,7 +403,7 @@ var chessPlugin = function () {
 	  // Target (this) element is the source node.
 	  //check if we move our piece
 		console.log("current player " + currentPlayer);
-	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== "1"){
+	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== currentPlayer){
 			dragSrcEl = e.target;
 
 		  e.dataTransfer.effectAllowed = 'move';
@@ -465,9 +466,7 @@ var chessPlugin = function () {
 		//update player score for taken piece
 		if(match[1]){
 			scores[$.chat.myNick()] += pieceValue[match[1]];
-		}
-		
-		currentPlayer = "2";
+		}		
 		//TODO send board state to others in chat
 		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
