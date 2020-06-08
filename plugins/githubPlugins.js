@@ -40,7 +40,8 @@ $.plugin({
                     }
                 } catch (e) { console.error(e); }
                 
-            }
+            }    
+            $.chat.write('Plugins loaded.');
             break;
           default:
             //console.log('Cannot understand message from iframe');
