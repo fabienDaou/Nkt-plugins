@@ -397,8 +397,8 @@ var chessPlugin = function () {
 	var handleDragStart = function(e) {
 	  // Target (this) element is the source node.
 	  //check if we move our piece
-
-	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== chessPluginVar.currentPlayer){
+		console.log("current player " + chessPluginVar.currentPlayer);
+	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== "1"){
 			dragSrcEl = e.target;
 
 		  e.dataTransfer.effectAllowed = 'move';
