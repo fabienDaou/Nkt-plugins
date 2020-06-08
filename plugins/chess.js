@@ -87,6 +87,7 @@ var chessPlugin = function () {
 							break;
 						}
 					}
+					if(players[0} ===  $.chat.myNick())return'';
 					players = [$.chat.myNick(), opponent];
 					$.chat.write('  <style>'+
 					'.chess-board { border-spacing: 0; border-collapse: collapse; }'+
