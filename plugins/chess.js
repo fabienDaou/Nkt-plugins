@@ -439,7 +439,7 @@ var chessPlugin = function () {
 
 };
 
-$.chat.chessPluginVar = new chessPlugin();
+var chessPluginVar = new chessPlugin();
 $.chat.generateBoard = chessPluginVar.generateBoard;
 
 $.plugin({
