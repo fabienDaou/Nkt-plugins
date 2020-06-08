@@ -578,8 +578,8 @@ var IRCcmd = function () {
             case 'reloadAll':
                 var hasGithubPluginsLoaded = $.pluginApi.pluginList().loaded.indexOf('githubPlugins') > -1;
                 if (hasGithubPluginsLoaded) {
-                    var ifr = document.getElementById('githubPluginsFrame').contentWindow;
-                    ifr.location.reload(true);
+                    var ifr = document.getElementById('githubPluginsFrame');
+                    ifr.src = allowedFrameOrigin + '?reload=' + (new Date()).getTime().toString()
                 }
                 break;
                 
