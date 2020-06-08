@@ -81,6 +81,7 @@ var chessPlugin = function () {
 				if(msg.indexOf("init") > -1){
 					console.log("I am in init for "+ nick);
 					let opponent;
+					//c'est quoi cette boucle?
 					for (let nick of $.chat.nicks()) {
 						if (msg.indexOf(nick) > -1) {
 							opponent = nick;
@@ -88,7 +89,7 @@ var chessPlugin = function () {
 						}
 					}
 					if(players[0] ===  $.chat.myNick()){return ""};
-					players = [opponent,$.chat.myNick()];
+					players = [nick,$.chat.myNick()];
 					$.chat.write('  <style>'+
 					'.chess-board { border-spacing: 0; border-collapse: collapse; }'+
 					'.chess-board th { padding: .5em; }'+
@@ -400,7 +401,7 @@ var chessPlugin = function () {
 	var handleDragStart = function(e) {
 	  // Target (this) element is the source node.
 	  //check if we move our piece
-		console.log("current player " + chessPluginVar.currentPlayer);
+		console.log("current player " + currentPlayer);
 	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== "1"){
 			dragSrcEl = e.target;
 
@@ -466,7 +467,7 @@ var chessPlugin = function () {
 			scores[$.chat.myNick()] += pieceValue[match[1]];
 		}
 		
-		chessPluginVar.currentPlayer = "2";
+		currentPlayer = "2";
 		//TODO send board state to others in chat
 		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
