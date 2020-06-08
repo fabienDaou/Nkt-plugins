@@ -464,7 +464,7 @@ var chessPlugin = function () {
 		
 		chessPluginVar.currentPlayer = "2";
 		//TODO send board state to others in chat
-		$.chat.write('°chessgame state '+e.dataTransfer.getData('origin');+e.target.id)
+		$.chat.write('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id)
 	  }
 
 	  return false;
