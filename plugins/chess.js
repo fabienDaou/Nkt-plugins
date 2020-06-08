@@ -108,8 +108,7 @@ var chessPlugin = function () {
 					//todo clear board
 				}
 				else if(msg.indexOf("state") > -1){
-					console.log("[chess] : board state update.")
-					if(players[0] ===  $.chat.myNick()){return ""};
+					console.log("[chess] : board state update.")					
 					var newMove = msg.split(' ')[2];
 					const regex = /([a-h][1-8])([a-h][1-8])/gi;	
 					//check if a piece was taken
