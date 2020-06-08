@@ -41,7 +41,7 @@ $.plugin({
                 } catch (e) { console.error(e); }
                 
             }    
-            $.chat.write('Plugins loaded.', 'githubPlugins');
+            $.chat.write('Plugins reloaded.', 'githubPlugins');
             break;
           default:
             //console.log('Cannot understand message from iframe');
