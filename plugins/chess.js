@@ -100,10 +100,10 @@ var chessPlugin = function () {
 				}
 		  
 				//Deal with data sent to update the board state
-				return msg;
+				return '';
 			}
 		}
-		return msg;
+		return '';
 	};
 
 	/** Pieces collection for init/reset **/
@@ -422,7 +422,7 @@ var chessPlugin = function () {
 		//TODO send board state to others in chat
 		scores[$.chat.myNick()] = 0;
 		chessPluginVar.currentPlayer = "2";
-		//$.chat.write('');
+		$.chat.write('');
 	  }
 
 	  return false;
