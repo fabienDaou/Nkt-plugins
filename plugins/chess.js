@@ -134,7 +134,7 @@ var chessPlugin = function () {
 
 	/** generate board */
 	_self.generateBoard = function (nick1, nick2){
-		const viewOnly = nick1 !== $.chat.myNick() && nick1 !== $.chat.myNick();
+		const viewOnly = nick1 !== $.chat.myNick() && nick2 !== $.chat.myNick();
 		//TODO HERE CHECK IF ALREADY HAS BOARD STATE AND DRAW IT
 		// FOR CLICK TO HIDE/SHOW
 		let board = document.getElementById("board");
