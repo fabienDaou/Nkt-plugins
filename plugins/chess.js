@@ -108,10 +108,17 @@ var chessPlugin = function () {
 					//todo clear board
 				}
 				else if(msg.indexOf("state") > -1){
-				
-					//msg.split(' ')[2];
+					if(players[0] ===  $.chat.myNick()){return ""};
+					var newMove = msg.split(' ')[2];
+					const regex = /([a-h][1-8])([a-h][1-8])/gi;	
+					//check if a piece was taken
+					var match = regex.exec(content);
+					if (match){
+						_self.updateBoard(match[1],match[2]);
+					}
 					//update board state
 					var playerIndex = players.indexOf($.chat.myNick());
+					
 					if(playerIndex){
 						//currentPlayer = ""+(IndexOf( _self.players, $.chat.myNick())+1);
 						currentPlayer = (1 + (playerIndex + 1) % players.length).toString();
@@ -379,16 +386,24 @@ var chessPlugin = function () {
 			return true;
 		}
 	};
+	
+	_self.updateBoard  = function(source,target){
+		var srcElem = document.getElementById(source);
+		document.getElementById(target).innerHTML = srcElem.innerHTML;
+		srcElem.innerHTML = "";
+		
+	};
 
 	var handleDragStart = function(e) {
 	  // Target (this) element is the source node.
 	  //check if we move our piece
 
-	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== "1"){
+	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== chessPluginVar.currentPlayer){
 			dragSrcEl = e.target;
 
 		  e.dataTransfer.effectAllowed = 'move';
 		  e.dataTransfer.setData('text/html', e.target.innerHTML);
+		  e.dataTransfer.setData('origin', e.target.innerHTML);
 		  
 		  highlightAllowedMoves(dragSrcEl.firstElementChild.getAttribute("piece"),dragSrcEl.id,dragSrcEl.firstElementChild.getAttribute("player"))
 	  
@@ -438,10 +453,18 @@ var chessPlugin = function () {
 		//TODO remplacer le pion par une dame si il est tout en haut ou tout en bas du plateau
 		e.target.innerHTML = e.dataTransfer.getData('text/html');
 		turnCount++;
+		const regex = /piece="(\w*)"/gi;
+	
+		//check if a piece was taken
+		var match = regex.exec(content);
+		//update player score for taken piece
+		if(match[1]){
+			scores[$.chat.myNick()] += pieceValue[match[1]];
+		}
 		
-		//TODO send board state to others in chat
-		scores[$.chat.myNick()] = 0;
 		chessPluginVar.currentPlayer = "2";
+		//TODO send board state to others in chat
+		$.chat.write('°chessgame state '+e.dataTransfer.getData('origin');+e.target.id)
 	  }
 
 	  return false;
