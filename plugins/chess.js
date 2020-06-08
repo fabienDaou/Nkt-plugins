@@ -109,10 +109,9 @@ var chessPlugin = function () {
 				}
 				else if(msg.indexOf("state") > -1){
 					console.log("[chess] : board state update.")					
-					var newMove = msg.split(' ')[2];
 					const regex = /state ([a-h][1-8])([a-h][1-8])/gi;	
 					//check if a piece was taken
-					var match = regex.exec(newMove);
+					var match = regex.exec(msg);
 					console.log(match)
 					if (match){
 						_self.updateBoard(match[1],match[2]);
