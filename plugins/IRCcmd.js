@@ -574,6 +574,14 @@ var IRCcmd = function () {
 				else $.chat.write('Plugin '+pluginName+' not found !', '');
 				
                 break;
+
+            case 'reloadAll':
+                var hasGithubPluginsLoaded = $.pluginApi.pluginList().loaded.indexOf('githubPlugins') > -1;
+                if (hasGithubPluginsLoaded) {
+                    var ifr = document.getElementById('githubPluginsFrame').contentWindow;
+                    ifr.location.reload(true);
+                }
+                break;
                 
             
             default:
@@ -607,7 +615,7 @@ var IRCcmd = function () {
         plugin : { 
             func: plugin, 
             description:'Plugins management with GitHub.', 
-            proto:'/plugin (list|load|unload|add|update|remove|view) | (ls|ld|ud|ad|up|rm|vi) [plugin name] [public|private] [plugin code]'
+            proto:'/plugin (list|load|unload|add|update|remove|view|reloadAll) | (ls|ld|ud|ad|up|rm|vi) [plugin name] [public|private] [plugin code]'
         },
     }
     
