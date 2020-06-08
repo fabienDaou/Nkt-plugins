@@ -59,6 +59,8 @@ var chessPlugin = function () {
 			'.highlight{border: 3px solid #47ff95!important;}'+
 			'div[player="1"] {'+
 			'  color: white;'+
+			'}div[player="2"] {'+
+			'  color: black;'+
 			'}</style>'+
 			'<table class="chess-board"><tbody id="board"></tbody></table><div id="messages"></div><script>$.chat.generateBoard("'+$.chat.myNick()+'","'+opponent+'")</script>', "chessbot");
 			/*setTimeout(()=>{					
@@ -96,9 +98,10 @@ var chessPlugin = function () {
 					'.highlight{border: 3px solid #47ff95!important;}'+
 					'div[player="1"] {'+
 					'  color: white;'+
+					'}div[player="2"] {'+
+					'  color: black;'+
 					'}</style>'+
 					'<table class="chess-board"><tbody id="board"></tbody></table><div id="messages"></div><script>$.chat.generateBoard("'+$.chat.myNick()+'","'+opponent+'")</script>', "chessbot");
-					_self.generateBoard($.chat.myNick(),opponent);
 				}
 				else if(msg.indexOf("cancel") > -1){
 					//todo clear board
