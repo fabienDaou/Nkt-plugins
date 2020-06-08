@@ -29,7 +29,7 @@ var gifsPlugin = function () {
         offset = 0;
         limit = 5;
         $("textarea").after(
-            "<div id='gifSelector'><ul id='gifcontainer' style='list-style-type: none;display:inline-flex'></ul><ul id='gifMenu' style='list-style-type: none;'><li><button type='button' role='button' onclick='gifPluginVar.reload()'>Load More...</button><button type='button' role='button' onclick='gifPluginVar.cancel()'>Cancel</button></li></ul></div>"
+            "<div id='gifSelector'><ul id='gifcontainer' style='list-style-type: none;display:inline-flex'></ul><ul id='gifMenu' style='list-style-type: none;'><li><button type='button' role='button' onclick='$.chat.gifPluginVar.reload()'>Load More...</button><button type='button' role='button' onclick='$.chat.gifPluginVar.cancel()'>Cancel</button></li></ul></div>"
         );
         buildURL();
     }
@@ -52,7 +52,7 @@ var gifsPlugin = function () {
                     $("#gifcontainer").append(
                         "<li><div style='border-left: #cbd8df thick solid'><img src=" +
                             gifUrl +
-                            " title='Powered By NÃ©nÃ©' alt='Error'/></div><button type='button' onclick='gifPluginVar.send(\"" +
+                            " title='Powered By NÃ©nÃ©' alt='Error'/></div><button type='button' onclick='$.chat.gifPluginVar.send(\"" +
                             gifUrl +
                             "\")'>Send</div></li>"
                     );
@@ -77,5 +77,5 @@ var gifsPlugin = function () {
         $("#gifSelector").remove();
     };
 };
-var gifPluginVar = new gifsPlugin();
-$.plugin({ name: "gifs", init: gifPluginVar.init, stop: gifPluginVar.stop });
+$.chat.gifPluginVar = new gifsPlugin();
+$.plugin({ name: "gifs", init: $.chat.gifPluginVar.init, stop: $.chat.gifPluginVar.stop });
