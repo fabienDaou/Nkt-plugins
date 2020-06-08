@@ -61,6 +61,9 @@ var chessPlugin = function () {
 			'  color: white;'+
 			'}</style>'+
 			'<table class="chess-board"><tbody id="board"></tbody></table><div id="messages"></div><script>$.chat.generateBoard("'+$.chat.myNick()+'","'+opponent+'")</script>', "chessbot");
+			/*setTimeout(()=>{					
+				generateBoard();
+			}, 500);*/
 			return '';
 
 		} catch(e) {
@@ -82,7 +85,7 @@ var chessPlugin = function () {
 						}
 					}
 					players = [nick, opponent];
-					_self.generateBoard($.chat.myNick() !== opponent);
+					//_self.generateBoard($.chat.myNick() !== opponent);
 				}
 				else if(msg.indexOf("cancel") > -1){
 					//todo clear board
@@ -103,7 +106,7 @@ var chessPlugin = function () {
 				return '';
 			}
 		}
-		return '';
+		return msg;
 	};
 
 	/** Pieces collection for init/reset **/
@@ -422,7 +425,6 @@ var chessPlugin = function () {
 		//TODO send board state to others in chat
 		scores[$.chat.myNick()] = 0;
 		chessPluginVar.currentPlayer = "2";
-		$.chat.write('');
 	  }
 
 	  return false;
@@ -439,7 +441,7 @@ var chessPlugin = function () {
 
 };
 
-$.chat.chessPluginVar = new chessPlugin();
+var chessPluginVar = new chessPlugin();
 $.chat.generateBoard = chessPluginVar.generateBoard;
 
 $.plugin({
