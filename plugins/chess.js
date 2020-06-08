@@ -77,6 +77,7 @@ var chessPlugin = function () {
 		if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1) {
 			if (msg.indexOf('°chessgame') > -1) {
 				if(msg.indexOf("init") > -1){
+					console.log("I am in init for "+ nick);
 					let opponent;
 					for (let nick of $.chat.nicks()) {
 						if (msg.indexOf(nick) > -1) {
@@ -342,7 +343,7 @@ var chessPlugin = function () {
 			
 		});	
 		
-		message(allowedMoves.join(''))
+		message(allowedMoves.join(' '))
 	};
 	
 	var checkBreakLimits = function(pos,player,allowedMoves){
