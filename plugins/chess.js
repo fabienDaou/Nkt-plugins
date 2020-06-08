@@ -49,7 +49,18 @@ var chessPlugin = function () {
 			currentPlayer = "1";
 			$.chat.send('°chessgame init ' + opponent);
 			// generate board on click
-			$.chat.write('<table class="chess-board"><tbody id="board"></tbody></table><div id="messages"></div><script>$.chat.generateBoard("'+$.chat.myNick()+'","'+opponent+'")</script>', "chessbot");
+			$.chat.write('  <style>'+
+            '.chess-board { border-spacing: 0; border-collapse: collapse; }'+
+            '.chess-board th { padding: .5em; }'+
+            '.chess-board td { border: 2px solid black; width: 2em; height: 2em; }'+
+            '.chess-board .light { background: #dad8d8; }'+
+            '.chess-board .dark { background: #2f99cc; }'+
+            'td{text-align:center;font-weight: bold;font-size: x-large;}'+
+			'.highlight{border: 3px solid #47ff95!important;}'+
+			'div[player="1"] {'+
+			'  color: white;'+
+			'}</style>'+
+			'<table class="chess-board"><tbody id="board"></tbody></table><div id="messages"></div><script>$.chat.generateBoard("'+$.chat.myNick()+'","'+opponent+'")</script>', "chessbot");
 			/*setTimeout(()=>{					
 				generateBoard();
 			}, 500);*/
@@ -413,6 +424,7 @@ var chessPlugin = function () {
 		
 		//TODO send board state to others in chat
 		scores[$.chat.myNick()] = 0;
+		chessPluginVar.currentPlayer = "2";
 	  }
 
 	  return false;
@@ -424,9 +436,6 @@ var chessPlugin = function () {
 	  [].forEach.call(cols, function (col) {
 		col.classList.remove('over');
 		col.classList.remove('highlight');
-		 if(col.innerHTML==="•"){
-		   col.innerHTML="";
-		  }
 	  });
 	};
 
