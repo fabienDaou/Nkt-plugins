@@ -85,8 +85,8 @@ var chessPlugin = function () {
 							break;
 						}
 					}
-					players = [nick, opponent];
-					//_self.generateBoard($.chat.myNick() !== opponent);
+					players = [$.chat.myNick(), opponent];
+					_self.generateBoard($.chat.myNick(),opponent);
 				}
 				else if(msg.indexOf("cancel") > -1){
 					//todo clear board
