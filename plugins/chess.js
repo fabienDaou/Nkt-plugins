@@ -451,7 +451,8 @@ var chessPlugin = function () {
 		//replace content of the cell we are droping on
 		
 		//TODO remplacer le pion par une dame si il est tout en haut ou tout en bas du plateau
-		e.target.innerHTML = e.dataTransfer.getData('text/html');
+		var content = e.dataTransfer.getData('text/html');
+		e.target.innerHTML = content;
 		turnCount++;
 		const regex = /piece="(\w*)"/gi;
 	
