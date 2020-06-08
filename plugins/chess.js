@@ -113,6 +113,7 @@ var chessPlugin = function () {
 					const regex = /([a-h][1-8])([a-h][1-8])/gi;	
 					//check if a piece was taken
 					var match = regex.exec(newMove);
+					console.log(match)
 					if (match){
 						_self.updateBoard(match[1],match[2]);
 						console.log("[chess] : board state update. completed.")
@@ -466,7 +467,8 @@ var chessPlugin = function () {
 		
 		chessPluginVar.currentPlayer = "2";
 		//TODO send board state to others in chat
-		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id)
+		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
+		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 	  }
 
 	  return false;
