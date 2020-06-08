@@ -20,7 +20,7 @@ $.plugin({
 				}, 3000);
 				written = 1;
 			}
-            if(/\bpas\b\s*((\btr(e|è¨)s\b\s*)|\bvraiment\b\s*)*(\bdr(o|Ã´)les?\b|\bmarrante?s?\b)/i.test(msg) && written == 0)
+            if(/\bpas\b\s*((\btr(e|è¨)s\b\s*)|\bvraiment\b\s*)*(\bdr(o|ô)les?\b|\bmarrante?s?\b)/i.test(msg) && written == 0)
 			{
 				setTimeout(function(){
 					$.chat.write( "Mais forcement c'est sans alcool !", "Merlin");
@@ -37,7 +37,10 @@ $.plugin({
             if(/\bpoint\b\s*\bmort\b/i.test(msg) && nick != "Arthur" && written == 0)
 			{
 				setTimeout(function(){
-					$.chat.write( "Mais ca fait 10 ans que ca dure votre histoire vous vous etes pas fait une bise sur le front venez pas me demander si c'est au point mort !", "Arthur");
+					$.chat.write(
+						"Mais ca fait 10 ans que ca dure votre histoire vous vous etes pas fait une bise sur le front venez pas me demander si c'est au point mort !",
+						"Arthur"
+					);
 				}, 500);
 				written = 1;
 			}
@@ -86,7 +89,7 @@ $.plugin({
 			if( (/\bsuperstiti(on|eux?)\b/i.test(msg) || /\bpoisse\b/i.test(msg)) && nick != "Perceval")
 			{
 				setTimeout(function(){
-					$.chat.write("La superstition c'est comme ceux qui rÃ©parent les fauteuils, il faut que le bois qu'ils rajoutent soit a peu pres comme l'autre bois sinon ca se voit trop.", 'Perceval');
+					$.chat.write("La superstition c'est comme ceux qui réparent les fauteuils, il faut que le bois qu'ils rajoutent soit a peu pres comme l'autre bois sinon ca se voit trop.", 'Perceval');
 				}, 500);
 				written = 1;
 			}

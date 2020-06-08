@@ -52,7 +52,7 @@ var gifsPlugin = function () {
                     $("#gifcontainer").append(
                         "<li><div style='border-left: #cbd8df thick solid'><img src=" +
                             gifUrl +
-                            " title='Powered By NÃ©nÃ©' alt='Error'/></div><button type='button' onclick='$.chat.gifPluginVar.send(\"" +
+                            " title='Powered By Néné' alt='Error'/></div><button type='button' onclick='$.chat.gifPluginVar.send(\"" +
                             gifUrl +
                             "\")'>Send</div></li>"
                     );

@@ -11,7 +11,7 @@ var eventHorizon = {
     },
     onFocus: function () {
         const lineNode = document.getElementById(this.lineId);
-        if (lineNode.parentNode.firstChild != lineNode) {
+        if (lineNode && lineNode.parentNode.firstChild != lineNode) {
             lineNode.style.display = "block";
             lineNode.scrollIntoView({ behavior: "smooth", block: "center" });
             lineNode.style.opacity = "0";

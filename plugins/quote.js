@@ -17,7 +17,11 @@ var quotePlugin = function () {
     };
 
     _self.onWrite = function (msg, nick) {
-        if (msg.split('>').length > 1 && msg.split('>')[1].split(' ').length && msg.split('>')[1].split(' ')[0].split('/').length === 3) return '<i>' + msg + '</i>'
+        if (
+            msg.split('>').length > 1
+            && msg.split('>')[1].split(' ').length
+            && msg.split('>')[1].split(' ')[0].split('/').length === 3
+        ) return '<i>' + msg + '</i>'
         if (msg.indexOf('/quote') === 0) return ''
         return msg
     };
@@ -32,7 +36,10 @@ var quotePlugin = function () {
 
     function choseQuote() {
 
-        setTimeout(function () { $('textarea').val('Select the line you want to quote'); }, 500); $("pre").mouseover(quotemouseover).mouseout(quotemouseout).click(quoteclick);
+        setTimeout(function () {
+            $('textarea').val('Select the line you want to quote');
+        }, 500);
+        $("pre").mouseover(quotemouseover).mouseout(quotemouseout).click(quoteclick);
 
     }
 

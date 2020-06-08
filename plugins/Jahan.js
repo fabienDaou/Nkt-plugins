@@ -7,9 +7,9 @@ $.plugin({
         var JahanArray = [
             "This seems to be broken.",
             "Quoi de neuf Traque-Source ?",
-            "Un problÃ¨me, Traque-Source ?",
-            "Je vous Ã©coute, Traque-Source.",
-            "Cet endroit est trÃ¨s mystÃ©rieux, bs bs bs ...",
+            "Un problème, Traque-Source ?",
+            "Je vous écoute, Traque-Source.",
+            "Cet endroit est très mystérieux, bs bs bs ...",
         ];
         if (
             msg.charAt(0) != "/" &&

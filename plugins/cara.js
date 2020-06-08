@@ -22,7 +22,10 @@ $.plugin({
 				}, 500);	
 			if(msg.match(/bike/i))
 				setTimeout(function(){
-					$.chat.write('<img src="https://www.google.fr/logos/doodles/2016/2016-doodle-fruit-games-day-7-5190998188621824-hp.gif" />', 'Google');
+					$.chat.write(
+						'<img src="https://www.google.fr/logos/doodles/2016/2016-doodle-fruit-games-day-7-5190998188621824-hp.gif" />',
+						'Google'
+					);
 				}, 500);
 			if(msg.match(/dogedarryck/i))
 							setTimeout(function(){

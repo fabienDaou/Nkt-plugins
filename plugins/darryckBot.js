@@ -47,7 +47,7 @@ $.plugin({
             nick != $.chat.myNick()
         ) {
             var darryckArray = [
-                "les acouphÃ¨nes qu'il doit avoir, ses tampons ont du exploser",
+                "les acouphènes qu'il doit avoir, ses tampons ont du exploser",
             ];
             if (msg.indexOf("rryck") > -1) {
                 setTimeout(function () {

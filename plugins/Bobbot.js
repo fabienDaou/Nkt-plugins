@@ -6,7 +6,7 @@ $.plugin({
     daouspec: function (msg, tags, nick) {
         if (msg.charAt(0) != "/" && (!tags || (tags && nick))) {
             var LoFArray = [
-                "Aujourd'hui j'ai juste redÃ©marrÃ© mon ordi parce que je retrouvais plus la souris.",
+                "Aujourd'hui j'ai juste redémarré mon ordi parce que je retrouvais plus la souris.",
                 "C'est quoi cette histoire de plus 1 djbz?",
                 "WTF",
                 "OMG",

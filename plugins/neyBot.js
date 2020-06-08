@@ -14,12 +14,16 @@ $.plugin({
         setTimeout(function(){
           $.chat.write(quotes[i], 'ney');
         }, 500);
-      if(msg.indexOf("ney") > -1 && nick == $.chat.myNick() && Math.random() > 0.65) { var rnd = Math.floor(Math.random()*neyArray.length);
-                $.chat.send('°Neyquote '+rnd.toString()); } else if(msg.indexOf('°Neyquote') > -1) { var index = parseInt(msg.split('°Neyquote ')[1]);
+      if(msg.indexOf("ney") > -1 && nick == $.chat.myNick() && Math.random() > 0.65) {
+        var rnd = Math.floor(Math.random()*neyArray.length);
+        $.chat.send('°Neyquote '+rnd.toString());
+      } else if(msg.indexOf('°Neyquote') > -1) {
+        var index = parseInt(msg.split('°Neyquote ')[1]);
 		    setTimeout(function(){
-				$.chat.write( neyArray[index], 'ney');
-
-		    }, 500); return '';}
+				  $.chat.write( neyArray[index], 'ney');
+        }, 500);
+        return '';
+      }
     }
     return msg;
   }

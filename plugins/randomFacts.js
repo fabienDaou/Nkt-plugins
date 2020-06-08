@@ -25,7 +25,19 @@ $.plugin({
 		factsArray.push({sentence:"Bon ça m'saoule j'ferme tout. (à Fabien) ET OUI JE BROWSERIFY.",author:"Jeff"});
 		factsArray.push({sentence:"Drink ? Fun ? ... Girls ? ..... Funny girls ?",author:"JapFragile"});
 		factsArray.push({sentence:"Elle tombe tellement souvent qu'elle a déjà un parmesan sur la tête!",author:"Jeff"});
-		factsArray.push({sentence:"EH BODDHY",author:"RandomBlackJap"});factsArray.push({sentence:"ceci je me ferais bien une ptite jeunette pour 50 boules",author:"Ney"});factsArray.push({sentence:"jsuis le mec quick and dirty",author:"Jeff"});factsArray.push({sentence:"je veux bien etre un bouche trou mais litteralement",author:"Ney"});factsArray.push({sentence:"jsuis le mec quick and dirty",author:"Jeff"});factsArray.push({sentence:"impec, une petite salade et jy retourne",author:"Jeff"});factsArray.push({sentence:"ptin en ce moment je pète des délires sur des tire bouchons",author:"Jeff"});factsArray.push({sentence:"Sinon on loue un turc a deux?",author:"Jeff"});factsArray.push({sentence:"Les gars s'il vous plait pas de metagaming",author:"Djambi"});factsArray.push({sentence:"Elle met des frites.",author:"Jeff"});factsArray.push({sentence:"ouais on peut te monter en flex pour trio/penta queue sur les mains",author:"Jeff"});factsArray.push({sentence:"Also I have a 2015 prius for rental.",author:"HostileBNB"});factsArray.push({sentence:"Break Point ?",author:"ElJefe"});
+		factsArray.push({sentence:"EH BODDHY",author:"RandomBlackJap"});
+		factsArray.push({sentence:"ceci je me ferais bien une ptite jeunette pour 50 boules",author:"Ney"});
+		factsArray.push({sentence:"jsuis le mec quick and dirty",author:"Jeff"});
+		factsArray.push({sentence:"je veux bien etre un bouche trou mais litteralement",author:"Ney"});
+		factsArray.push({sentence:"jsuis le mec quick and dirty",author:"Jeff"});
+		factsArray.push({sentence:"impec, une petite salade et jy retourne",author:"Jeff"});
+		factsArray.push({sentence:"ptin en ce moment je pète des délires sur des tire bouchons",author:"Jeff"});
+		factsArray.push({sentence:"Sinon on loue un turc a deux?",author:"Jeff"});
+		factsArray.push({sentence:"Les gars s'il vous plait pas de metagaming",author:"Djambi"});
+		factsArray.push({sentence:"Elle met des frites.",author:"Jeff"});
+		factsArray.push({sentence:"ouais on peut te monter en flex pour trio/penta queue sur les mains",author:"Jeff"});
+		factsArray.push({sentence:"Also I have a 2015 prius for rental.",author:"HostileBNB"});
+		factsArray.push({sentence:"Break Point ?",author:"ElJefe"});
 		
 		
         if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1 && (!tags || (tags && nick))) {

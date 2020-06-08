@@ -8,8 +8,8 @@ $.plugin({
     
     
     deutsch: function(msg, tags, nick) {        
-        var nickBegin =  ['Flummi', 'Geist', 'Hund', 'Bluffs', 'MÃ¤dchen', 'Pony', 'Ziege', 'Kohl', 'Geschwindigkeit', 'Ente', 'Witwer', 'Sauerkraut', 'Traum', 'Welt', 'Kartoffel', 'Seelen', 'Stern', 'Blitz', 'KrÃ¼ppel', 'Mehlschwitze', 'Schmetterling']; 
-        var nickEnd =  ['Besitzer', 'Dieb','KÃ¶nig', 'Kaiser', 'MÃ¶rder', 'Ficker', 'BÃ¤ndiger', 'WÃ¤rmer', 'Futter', 'Weh', 'Katastrophe', 'Panik', 'Salat', 'Meister', 'Fresser', 'Saft', 'Begrenzung', 'Ritter','Angst', 'Lust', 'Regen', 'Gott']; 
+        var nickBegin =  ['Flummi', 'Geist', 'Hund', 'Bluffs', 'Mädchen', 'Pony', 'Ziege', 'Kohl', 'Geschwindigkeit', 'Ente', 'Witwer', 'Sauerkraut', 'Traum', 'Welt', 'Kartoffel', 'Seelen', 'Stern', 'Blitz', 'Mehlschwitze', 'Schmetterling']; 
+        var nickEnd =  ['Besitzer', 'Dieb','Knig', 'Kaiser', 'Mörder', 'Ficker', 'Bändiger', 'Wärmer', 'Futter', 'Weh', 'Katastrophe', 'Panik', 'Salat', 'Meister', 'Fresser', 'Saft', 'Begrenzung', 'Ritter','Angst', 'Lust', 'Regen', 'Gott']; 
        
         
         
