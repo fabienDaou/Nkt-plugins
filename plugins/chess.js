@@ -405,7 +405,7 @@ var chessPlugin = function () {
 
 		  e.dataTransfer.effectAllowed = 'move';
 		  e.dataTransfer.setData('text/html', e.target.innerHTML);
-		  e.dataTransfer.setData('origin', e.target.innerHTML);
+		  e.dataTransfer.setData('origin', e.target.id);
 		  
 		  highlightAllowedMoves(dragSrcEl.firstElementChild.getAttribute("piece"),dragSrcEl.id,dragSrcEl.firstElementChild.getAttribute("player"))
 	  
