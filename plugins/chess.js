@@ -79,7 +79,7 @@ var chessPlugin = function () {
 		if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1) {
 			if (msg.indexOf('°chessgame') > -1) {
 				if(msg.indexOf("init") > -1){
-					console.log("I am in init for "+ nick);
+					console.log("[chess] I am in init for "+ nick);
 					let opponent;
 					//c'est quoi cette boucle?
 					for (let nick of $.chat.nicks()) {
@@ -110,9 +110,9 @@ var chessPlugin = function () {
 				}
 				else if(msg.indexOf("state") > -1){
 					console.log("[chess] : board state update from "+nick )
-					console.log(players.join(" "));
+					console.log("[chess] players : " +players.join(" "));
 					//Get current player index
-					console.log("currentPlayer "+currentPlayer);	
+					console.log("[chess] currentPlayer "+currentPlayer);	
 					//on ne met pas a jour le board si le move vient du meme joueur
 					if(nick ===  $.chat.myNick()){return ""};					
 					const regex = /state ([a-h][1-8])([a-h][1-8])/gi;	
@@ -236,6 +236,8 @@ var chessPlugin = function () {
 	
 		//check if a piece was taken
 		var match = regex.exec(content);
+		
+		console.log("[chess] score debug match :"+ match.join(' '));
 		//update player score for taken piece
 		if(match[1]){
 			scores[player] += pieceValue[match[1]];
@@ -243,7 +245,7 @@ var chessPlugin = function () {
 		}	
 
 				
-	}
+	};
 
 	//Check allowed moves given a piece and a position
 	var highlightAllowedMoves = function(piece,position,player){
@@ -429,7 +431,7 @@ var chessPlugin = function () {
 	var handleDragStart = function(e) {
 	  // Target (this) element is the source node.
 	  //check if we move our piece
-		console.log("current player " + currentPlayer);
+		console.log("[chess] current player " + currentPlayer);
 		if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== currentPlayer){
 		  dragSrcEl = e.target;
 
@@ -491,7 +493,7 @@ var chessPlugin = function () {
 		currentPlayer = "wait";
 		
 		//send board state to others in chat
-		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
+		console.log('[chess] send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 		
 	  }
