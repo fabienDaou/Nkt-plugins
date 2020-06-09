@@ -241,6 +241,9 @@ var chessPlugin = function () {
 		console.log("[chess] score debug match :"+ content);
 		//update player score for taken piece
 		if(match && match[1]){
+			if(!scores[player]){
+				scores[player]  = 0;
+			}
 			scores[player] += pieceValue[match[1]===""?"default":match[1]];
 			displayScore();
 		}	
@@ -417,14 +420,15 @@ var chessPlugin = function () {
 	_self.updateBoard  = function(source,target){
 		var srcElem = document.getElementById(source);
 		var targetElem = document.getElementById(target).innerHTML;
-		document.getElementById(target).innerHTML = srcElem.innerHTML;
-		srcElem.innerHTML = "";
-		//as board is updated by the opponent, need to update local score information
 		var playerIndex = players.indexOf($.chat.myNick());
 		if(playerIndex > -1){			
 			//update score from the opponent player move
 			pointsEarnedFromMove(targetElem,players[1-playerIndex]);
 		}
+		document.getElementById(target).innerHTML = srcElem.innerHTML;
+		srcElem.innerHTML = "";
+		//as board is updated by the opponent, need to update local score information
+	
 		
 		
 	};
