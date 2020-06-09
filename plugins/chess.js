@@ -109,11 +109,11 @@ var chessPlugin = function () {
 					//todo clear board
 				}
 				else if(msg.indexOf("state") > -1){
-					console.log("[chess] : board state update.")
+					console.log("[chess] : board state update from "+nick )
 					console.log(players.join(" "));
 					//Get current player index
 					console.log("currentPlayer "+currentPlayer);	
-					if(players[parseInt(currentPlayer)-1] ===  $.chat.myNick()){return ""};					
+					if(nick ===  $.chat.myNick()){return ""};					
 					const regex = /state ([a-h][1-8])([a-h][1-8])/gi;	
 					//check if a piece was taken
 					var match = regex.exec(msg);
@@ -473,7 +473,7 @@ var chessPlugin = function () {
 		var playerIndex = players.indexOf($.chat.myNick());	
 		console.log("mynick " +$.chat.myNick())
 		console.log("playerIndex " +playerIndex)
-		//Increment index turn to allow next player to play
+		//Increment index turn to forbid current player to play again
 		if(playerIndex > -1){
 			
 			currentPlayer = (1 + (playerIndex + 1) % players.length).toString();
