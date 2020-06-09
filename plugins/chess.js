@@ -468,7 +468,15 @@ var chessPlugin = function () {
 		if(match[1]){
 			scores[$.chat.myNick()] += pieceValue[match[1]];
 		}		
-		//TODO send board state to others in chat
+		
+		//Increment player turn
+		var playerIndex = players.indexOf($.chat.myNick());	
+		//Increment index turn to allow next player to play
+		if(playerIndex){
+			currentPlayer = (1 + (playerIndex + 2) % players.length).toString();
+		}
+		
+		//send board state to others in chat
 		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 	  }
