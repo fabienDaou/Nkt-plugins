@@ -113,23 +113,23 @@ var chessPlugin = function () {
 					console.log(players.join(" "));
 					//Get current player index
 					console.log("currentPlayer "+currentPlayer);	
+					//on ne met pas a jour le board si le move vient du meme joueur
 					if(nick ===  $.chat.myNick()){return ""};					
 					const regex = /state ([a-h][1-8])([a-h][1-8])/gi;	
-					//check if a piece was taken
+					//extract the move information : source position and target position
 					var match = regex.exec(msg);
 					console.log(match)
 					if (match){
-						//update board state
+						//update board state with source/target position
 						_self.updateBoard(match[1],match[2]);
 						console.log("[chess] : board state update. completed.")
 					}
 					var playerIndex = players.indexOf($.chat.myNick());	
 					//Increment index turn to allow next player to play
 					if(playerIndex > -1){
-						//currentPlayer = ""+(IndexOf( _self.players, $.chat.myNick())+1);
+						//set currentPlayer to the current player in the game that juste received a move from opponent.
 						currentPlayer = (1 + (playerIndex + 2) % players.length).toString();
-					}
-					//board state is sent after the piece is droped from a player				
+					}			
 				}
 		  
 				//Deal with data sent to update the board state
@@ -226,6 +226,24 @@ var chessPlugin = function () {
 	var message = function(text){
 		document.getElementById("messages").innerHTML=text;
 	};
+	
+	var displayScore = function(text){
+		document.getElementById("messages").innerHTML= "<p>"+players[0]+" : "+scores[players[0]]+" pts</p><p>"+players[1]+" : "+scores[players[1]]+" pts</p>";
+	};
+	
+	var pointsEarnedFromMove(content, player){
+		const regex = /piece="(\w*)"/gi;
+	
+		//check if a piece was taken
+		var match = regex.exec(content);
+		//update player score for taken piece
+		if(match[1]){
+			scores[player] += pieceValue[match[1]];
+			displayScore();
+		}	
+
+				
+	}
 
 	//Check allowed moves given a piece and a position
 	var highlightAllowedMoves = function(piece,position,player){
@@ -372,7 +390,7 @@ var chessPlugin = function () {
 			
 		});	
 		
-		message(allowedMoves.join(' '))
+		message(allowedMoves.join(' '));
 	};
 	
 	var checkBreakLimits = function(pos,player,allowedMoves){
@@ -395,8 +413,16 @@ var chessPlugin = function () {
 	
 	_self.updateBoard  = function(source,target){
 		var srcElem = document.getElementById(source);
+		var targetElem = document.getElementById(target).innerHTML;
 		document.getElementById(target).innerHTML = srcElem.innerHTML;
 		srcElem.innerHTML = "";
+		//as board is updated by the opponent, need to update local score information
+		var playerIndex = players.indexOf($.chat.myNick());
+		if(playerIndex > -1){			
+			//update score from the opponent player move
+			pointsEarnedFromMove(targetElem,players[1-playerIndex]);
+		}
+		
 		
 	};
 
@@ -404,16 +430,16 @@ var chessPlugin = function () {
 	  // Target (this) element is the source node.
 	  //check if we move our piece
 		console.log("current player " + currentPlayer);
-	  if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== currentPlayer){
-			dragSrcEl = e.target;
+		if(e.target.hasChildNodes() && e.target.firstChild.getAttribute("player")=== currentPlayer){
+		  dragSrcEl = e.target;
 
 		  e.dataTransfer.effectAllowed = 'move';
 		  e.dataTransfer.setData('text/html', e.target.innerHTML);
 		  e.dataTransfer.setData('origin', e.target.id);
 		  
 		  highlightAllowedMoves(dragSrcEl.firstElementChild.getAttribute("piece"),dragSrcEl.id,dragSrcEl.firstElementChild.getAttribute("player"))
-	  
-	  }
+
+		}
 
 	};
 
@@ -460,20 +486,14 @@ var chessPlugin = function () {
 		var content = e.dataTransfer.getData('text/html');
 		e.target.innerHTML = content;
 		turnCount++;
-		const regex = /piece="(\w*)"/gi;
-	
-		//check if a piece was taken
-		var match = regex.exec(content);
-		//update player score for taken piece
-		if(match[1]){
-			scores[$.chat.myNick()] += pieceValue[match[1]];
-		}		
-		
-		currentPlayer = "wait"
+		//Calculate points and display score
+		pointsEarnedFromMove(content,$.chat.myNick());
+		currentPlayer = "wait";
 		
 		//send board state to others in chat
 		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
 		$.chat.send('°chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
+		
 	  }
 
 	  return false;
@@ -488,7 +508,10 @@ var chessPlugin = function () {
 	  });
 	};
 
+
 };
+
+
 
 var chessPluginVar = new chessPlugin();
 $.chat.generateBoard = chessPluginVar.generateBoard;
