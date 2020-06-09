@@ -87,9 +87,10 @@ var chessPlugin = function () {
 							opponent = nick;
 							break;
 						}
-					}
+					}					
 					if(players[0] ===  $.chat.myNick()){return ""};
 					players = [nick,$.chat.myNick()];
+					scores[$.chat.myNick()] = 0;
 					$.chat.write('  <style>'+
 					'.chess-board { border-spacing: 0; border-collapse: collapse; }'+
 					'.chess-board th { padding: .5em; }'+
@@ -166,7 +167,7 @@ var chessPlugin = function () {
 		"N":3,
 		"B":3,
 		"Q" :9,
-		"" :1
+		"default" :1
 	};
 
 	var scores = {};
@@ -240,7 +241,7 @@ var chessPlugin = function () {
 		console.log("[chess] score debug match :"+ content);
 		//update player score for taken piece
 		if(match && match[1]){
-			scores[player] += pieceValue[match[1]];
+			scores[player] += pieceValue[match[1]===""?"default":match[1]];
 			displayScore();
 		}	
 
