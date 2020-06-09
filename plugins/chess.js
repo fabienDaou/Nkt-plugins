@@ -125,7 +125,7 @@ var chessPlugin = function () {
 					}
 					var playerIndex = players.indexOf($.chat.myNick());	
 					//Increment index turn to allow next player to play
-					if(playerIndex){
+					if(playerIndex > -1){
 						//currentPlayer = ""+(IndexOf( _self.players, $.chat.myNick())+1);
 						currentPlayer = (1 + (playerIndex + 2) % players.length).toString();
 					}
@@ -474,7 +474,7 @@ var chessPlugin = function () {
 		console.log("mynick " +$.chat.myNick())
 		console.log("playerIndex " +playerIndex)
 		//Increment index turn to allow next player to play
-		if(playerIndex){
+		if(playerIndex > -1){
 			
 			currentPlayer = (1 + (playerIndex + 2) % players.length).toString();
 			console.log("currentPlayer " +currentPlayer)
