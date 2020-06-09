@@ -228,10 +228,10 @@ var chessPlugin = function () {
 	};
 	
 	var displayScore = function(text){
-		document.getElementById("messages").innerHTML= "<p>"+players[0]+" : "+scores[players[0]]+" pts</p><p>"+players[1]+" : "+scores[players[1]]+" pts</p>";
+		document.getElementById("messages").innerHTML = "<p>"+players[0]+" : "+scores[players[0]]+" pts</p><p>"+players[1]+" : "+scores[players[1]]+" pts</p>";
 	};
 	
-	var pointsEarnedFromMove(content, player){
+	var pointsEarnedFromMove = function(content, player){
 		const regex = /piece="(\w*)"/gi;
 	
 		//check if a piece was taken
