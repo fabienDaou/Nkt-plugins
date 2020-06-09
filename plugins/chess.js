@@ -127,7 +127,7 @@ var chessPlugin = function () {
 					//Increment index turn to allow next player to play
 					if(playerIndex > -1){
 						//currentPlayer = ""+(IndexOf( _self.players, $.chat.myNick())+1);
-						currentPlayer = (1 + (playerIndex + 1) % players.length).toString();
+						currentPlayer = (1 + (playerIndex + 2) % players.length).toString();
 					}
 					//board state is sent after the piece is droped from a player				
 				}
@@ -469,16 +469,7 @@ var chessPlugin = function () {
 			scores[$.chat.myNick()] += pieceValue[match[1]];
 		}		
 		
-		//Increment player turn
-		var playerIndex = players.indexOf($.chat.myNick());	
-		console.log("mynick " +$.chat.myNick())
-		console.log("playerIndex " +playerIndex)
-		//Increment index turn to forbid current player to play again
-		if(playerIndex > -1){
-			
-			currentPlayer = (1 + (playerIndex + 1) % players.length).toString();
-			console.log("currentPlayer " +currentPlayer)
-		}
+		currentPlayer = "wait"
 		
 		//send board state to others in chat
 		console.log('send => °chessgame state '+e.dataTransfer.getData('origin')+e.target.id);
