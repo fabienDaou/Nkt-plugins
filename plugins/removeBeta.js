@@ -4,6 +4,7 @@ $.plugin({
     init: function() {
         $('.plugins span:first').hide();
         $('#plugins-toggle').css('margin-top', -5);
+        if ($.chat.chatObserver) $.chat.chatObserver.disconnect();
         $.chat.fndaousort = () => {
             $.chat.chatObserver.disconnect();
             $("#plugin-container div").sort(function(a, b) {
