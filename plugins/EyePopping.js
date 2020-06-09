@@ -1,3 +1,4 @@
+(()=>{
 var eyePopping = function () {
     /*name: 'EyePopping',*/
     var self = this;
@@ -124,3 +125,4 @@ $.plugin({
     init,
     stop
 });
+})();
