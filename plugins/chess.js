@@ -376,7 +376,7 @@ var chessPlugin = function () {
 		
 		//Notifier aucun move possible
 		if(allowedMoves.length===0){
-			message("No possible moves.");
+			//message("No possible moves.");
 			return;
 		}
 		
@@ -390,7 +390,7 @@ var chessPlugin = function () {
 			
 		});	
 		
-		message(allowedMoves.join(' '));
+		//message(allowedMoves.join(' '));
 	};
 	
 	var checkBreakLimits = function(pos,player,allowedMoves){
