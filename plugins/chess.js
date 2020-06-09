@@ -236,10 +236,9 @@ var chessPlugin = function () {
 	
 		//check if a piece was taken
 		var match = regex.exec(content);
-		
-		console.log("[chess] score debug match :"+ content);
+	
 		//update player score for taken piece
-		if(match[1]){
+		if(match && match[1]){
 			scores[player] += pieceValue[match[1]];
 			displayScore();
 		}	
