@@ -47,7 +47,7 @@ $.plugin({
                 } catch (e) { console.error(e); }
                 
             }
-            const num = (Array.isArray(eventData.data) ? eventData.length : 0).toString();
+            const num = (Array.isArray(eventData.data) ? eventData.data.length : 0).toString();
             const numPri = (
               $.chat.privatePlugins.length > 0
               ? ' (including ' + $.chat.privatePlugins.length.toString() + 'private plugins)'
