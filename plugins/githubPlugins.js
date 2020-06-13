@@ -46,8 +46,9 @@ $.plugin({
                     }
                 } catch (e) { console.error(e); }
                 
-            }    
-            $.chat.write('Plugins reloaded.', 'githubPlugins');
+            }
+            const num = Array.isArray(eventData.data) ? eventData.length : 0;
+            $.chat.write(num.toString() + 'plugins reloaded.', 'githubPlugins');
             break;
           default:
             //console.log('Cannot understand message from iframe');
