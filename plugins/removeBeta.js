@@ -37,5 +37,14 @@ $.plugin({
             childList: true
         });
         setTimeout($.chat.fndaousort, 100);
+
+        const useNktFavicon = () => {
+            const head = document.querySelector("head");
+            const faviconLink = document.createElement("link");
+            faviconLink.setAttribute("rel", "shortcut icon");
+            faviconLink.setAttribute("href", "https://raw.githubusercontent.com/fabienDaou/fabienDaou.github.io/master/icons/favicon.ico");
+            head.appendChild(faviconLink);
+        };
+        useNktFavicon();
     }
 });
