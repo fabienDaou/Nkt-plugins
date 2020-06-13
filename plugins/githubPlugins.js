@@ -47,10 +47,10 @@ $.plugin({
                 } catch (e) { console.error(e); }
                 
             }
-            const num = (Array.isArray(eventData.data) ? eventData.data.length : 0).toString();
+            const num = Array.isArray(eventData.data) ? eventData.data.length.toString() + ' ' : '0 ';
             const numPri = (
               $.chat.privatePlugins.length > 0
-              ? ' (including ' + $.chat.privatePlugins.length.toString() + 'private plugins)'
+              ? ' (including ' + $.chat.privatePlugins.length.toString() + ' private plugins)'
               : ''
             );
             $.chat.write(num + 'plugins' + numPri + ' reloaded.', 'githubPlugins');
