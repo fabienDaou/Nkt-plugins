@@ -29,7 +29,7 @@ $.plugin({
         }, 500)
         return ''
       }
-      if (Math.floor((Math.random() * $.chat.nicks().length * 500)) + 1 === 1) {
+      if (Math.floor((Math.random() * $.chat.nicks().length * 500)) + 1 === 1 && false) {
         setTimeout(function () {
           $.chat.send('°todo ' + Math.floor(Math.random() * todo.length))
         }, 500)
