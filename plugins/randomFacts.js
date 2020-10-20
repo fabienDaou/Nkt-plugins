@@ -38,6 +38,7 @@ $.plugin({
 		factsArray.push({sentence:"ouais on peut te monter en flex pour trio/penta queue sur les mains",author:"Jeff"});
 		factsArray.push({sentence:"Also I have a 2015 prius for rental.",author:"HostileBNB"});
 		factsArray.push({sentence:"Break Point ?",author:"ElJefe"});
+	    	factsArray.push({sentence:"J'étais avec KraK en medbay",author:"amongus"});
 		
 		
         if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1 && (!tags || (tags && nick))) {
