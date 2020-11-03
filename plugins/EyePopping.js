@@ -7,7 +7,7 @@ var eyePopping = function () {
         const stringToColor = (str) => {
             const djambiColors = [
                 "#c8f7c5", "#7fffd4", "#baf73c", "#98fb98", "#00ff7f", "#90ee90", "#00ff00", "#00fa9a", "#38f689", "#a2ded0",
-                "#3cf73c", "#abe338", "#86e2d5", "#4ae08c", "#ff0000", "#87d37c", "#6ad4b1", "#9acd32", "#36d7b7", "#7ed07e",
+                "#3cf73c", "#abe338", "#86e2d5", "#4ae08c", "#bb0000", "#87d37c", "#6ad4b1", "#9acd32", "#36d7b7", "#7ed07e",
                 "#90c695", "#4ecdc4", "#66cc99", "#65c6bb", "#00d46a", "#2eccb0", "#00d400", "#00cf80", "#2ecc91", "#68c3a3",
                 "#76c376", "#2ecc71", "#03c9a9", "#32cd32", "#2ecc51", "#2ecc32", "#3fc380", "#8bb82d", "#26c281", "#1bbc9b",
                 "#2abb9b", "#3cb572", "#3cb371", "#4daf7c", "#55aa8d", "#00b16a", "#65a665", "#7aa228", "#e0ffff", "#e4f1fe",
