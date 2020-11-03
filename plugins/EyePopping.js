@@ -5,6 +5,7 @@ var eyePopping = function () {
 
     self.init = function () {
         const stringToColor = (str) => {
+            if (str === 'qr') return 'red';
             const djambiColors = [
                 "#c8f7c5", "#7fffd4", "#baf73c", "#98fb98", "#00ff7f", "#90ee90", "#00ff00", "#00fa9a", "#38f689", "#a2ded0",
                 "#3cf73c", "#abe338", "#86e2d5", "#4ae08c", "#4add8c", "#87d37c", "#6ad4b1", "#9acd32", "#36d7b7", "#7ed07e",
