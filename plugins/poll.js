@@ -33,7 +33,6 @@ var pollPlugin = function () {
                   let pollStr = params.split('start');
                   pollStr.shift();
                   pollStr = pollStr.join('');
-                  console.log(pollStr);
                   const pollArr = pollStr.split(',');
                   pollID = Math.ceil(Math.random()*1000);
                   let poll = JSON.parse(localStorage.getItem('poll') || '{}');
