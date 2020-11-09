@@ -92,6 +92,8 @@ var pollPlugin = function () {
                 localStorage.setItem('poll', JSON.stringify(pollObj));
                 localStorage.removeItem('pollActive');
                 $.chat.write('poll ' + pollID + ' removed', 'pollbot');
+            } else {
+                $.chat.write('Usage is : ' + proto, 'pollbot');
             }
 
 		}catch(e){$.chat.write(e.toString(),'pollbot');return '';}
