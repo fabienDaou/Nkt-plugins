@@ -54,7 +54,8 @@ $.plugin({
             'barBot',
             'neyBot',
             'noF5',
-            'blindtest'];
+            'blindtest',
+            'poll'];
         for(let plugin of plugins) loadAndLog(plugin);
         /*
         var loadPluginsWhenNotLooking = function (plugins) {
