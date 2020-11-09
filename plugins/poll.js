@@ -121,7 +121,7 @@ $.plugin({
             var msgtest = msg.slice();
             if (msgtest.charAt(0) === '<') msgtest = msg.split('>')[1].split('<')[0]; // *puke*
             const ix = msgtest.toLowerCase().replace(/ /g,'');
-            if (isNaN(ix)) return msg;
+            if (isNaN(ix) || !ix) return msg;
             if (currPoll.pollAlreadyVoted.indexOf(nick) > -1) return msg;
             poll[pollActive].pollScores[ix-1] = poll[pollActive].pollScores[ix-1] ? poll[pollActive].pollScores[ix-1] + 1 : 1;
             poll[pollActive].pollAlreadyVoted.push(nick);
