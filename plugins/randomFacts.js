@@ -39,6 +39,8 @@ $.plugin({
 		factsArray.push({sentence:"Also I have a 2015 prius for rental.",author:"HostileBNB"});
 		factsArray.push({sentence:"Break Point ?",author:"ElJefe"});
 	    	factsArray.push({sentence:"J'étais avec KraK en medbay",author:"amongus"});
+	    	factsArray.push({sentence:"Cet homme est parfaitement proportionné !",author:"PixCyan"});
+	    	factsArray.push({sentence:"J’espère que Pixcyan mangera pas les pieds de Jeff",author:"LaJeffe"});
 		
 		
         if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1 && (!tags || (tags && nick))) {
