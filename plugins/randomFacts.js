@@ -41,6 +41,7 @@ $.plugin({
 	    	factsArray.push({sentence:"J'étais avec KraK en medbay",author:"amongus"});
 	    	factsArray.push({sentence:"Cet homme est parfaitement proportionné !",author:"PixCyan"});
 	    	factsArray.push({sentence:"J’espère que Pixcyan mangera pas les pieds de Jeff",author:"LaJeffe"});
+	    	factsArray.push({sentence:"Ckoi le fun ?",author:"ElJefe"});
 		
 		
         if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1 && (!tags || (tags && nick))) {
