@@ -31,7 +31,8 @@ $.plugin({
         "c'est pour ça qu'il avait l'air super vite",
         "on fait 1 ou 2 parties le temps que clavier pète son néné",
         "Franchement Jeff c'est le mec le plus négligé que je connaisse",
-	 "Quand tu veux apprendre à un mec à nager, tu l'asperges pas avec un tuyau d'arrosage, tu le balances dans l'eau"
+	 "Quand tu veux apprendre à un mec à nager, tu l'asperges pas avec un tuyau d'arrosage, tu le balances dans l'eau",
+	 "Vous connaissez l'expression : galbé comme un cygne ?"
       ];      
       if(msg.indexOf("BenQuote") > -1)
 		    setTimeout(function(){
