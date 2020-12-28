@@ -43,6 +43,7 @@ $.plugin({
 	    	factsArray.push({sentence:"J’espère que Pixcyan mangera pas les pieds de Jeff",author:"LaJeffe"});
 	    	factsArray.push({sentence:"Ckoi le fun ?",author:"ElJefe"});
 	    	factsArray.push({sentence:"Ben c'est un peu un fromage.",author:"ElJefe"});
+	    	factsArray.push({sentence:"C'est bon j'ai la moitié de mon full stuff.",author:"ElJefe"});
 	    	factsArray.push({sentence:"Si c'est Jeff c'est très court.",author:"LaJeffe"});
 		
 		
