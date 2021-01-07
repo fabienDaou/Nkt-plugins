@@ -33,7 +33,8 @@ $.plugin({
         "Franchement Jeff c'est le mec le plus négligé que je connaisse",
 	 "Quand tu veux apprendre à un mec à nager, tu l'asperges pas avec un tuyau d'arrosage, tu le balances dans l'eau",
 	 "Vous connaissez l'expression : galbé comme un cygne ?",
-	 "Arrêtez de me faire rire, j'ai mal au dos"
+	 "Arrêtez de me faire rire, j'ai mal au dos",
+	  "C'est vrai que maintenant quand je dis 20 balles, j'veux dire 20 bucks quoi"
       ];      
       if(msg.indexOf("BenQuote") > -1)
 		    setTimeout(function(){
