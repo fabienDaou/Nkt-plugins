@@ -10,7 +10,7 @@ var serverStatusPlugin = function () {
             proto:'/battery'
         }, 'battery');
         $.irc.addCmd({ 
-            func: _self.battery, 
+            func: _self.uptime, 
             description:'get nkt system uptime', 
             proto:'/uptime'
         }, 'uptime');
@@ -41,7 +41,7 @@ var serverStatusPlugin = function () {
      * @param string params End of the command
      * @param object source User who send the command (null if current)
      */
-    _self.battery = function (cmd, params, source) {
+    _self.uptime = function (cmd, params, source) {
 	  	if( !source ) { try{
         fetch('/files/uptime').then((r) => r.text()).then((t) => { $.chat.write(t, 'uptime'); });
 	  	}catch(e){return '';}
