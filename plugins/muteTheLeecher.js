@@ -7,6 +7,8 @@ $.plugin({
         }
     },
     init: function() {
-        if (!$.chat.isMuted(nick)) $.chat.mute(nick);
+        for (let nick of $.chat.nicks()) {
+            if (nick.indexOf('leech_') === 0 && !$.chat.isMuted(nick)) $.chat.mute(nick);
+        }
     }
 });
