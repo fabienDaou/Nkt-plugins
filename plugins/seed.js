@@ -56,7 +56,9 @@ $.plugin({
             'noF5',
             'blindtest',
             'poll',
-            'muteTheLeecher'];
+            'muteTheLeecher',
+            'serverStatus'
+        ];
         for(let plugin of plugins) loadAndLog(plugin);
         /*
         var loadPluginsWhenNotLooking = function (plugins) {
