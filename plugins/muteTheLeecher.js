@@ -1,6 +1,6 @@
 $.plugin({
     
-    name: 'yo',
+    name: 'muteTheLeecher',
     onNewUser: function(nick) {
         if (nick != $.chat.myNick() && nick.indexOf('leech_') === 0 ) {
             if (!$.chat.isMuted(nick)) $.chat.mute(nick);
