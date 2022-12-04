@@ -40,7 +40,6 @@ $.plugin({
                         console.log('error in json parsing or atobing plugin ' + plugin.name);
                         console.error(e);// Raw
                     } finally {
-                        $.chat.pluginsCode.push(btoa(plugin.text));
                         eval(plugin.text);
                         if (plugin.isPrivate) {
                           $.chat.privatePlugins.push(plugin.name.replace(/\.js/g,''));
