@@ -33,17 +33,18 @@ var sharePluginsWithPlugin = function () {
      * @param object source User who send the command (null if current)
      */
     _self.sharePluginsWith = function (cmd, params, source) {
-	  	if( !source ) { try{
+	  	if( !source ) {
 			for (let plugin of $.chat.pluginsCode) {
+				try{
 				let chunks =  _self.chunkSubstr(plugin, 1000);
-			$.chat.sendPrivate(params,  '<script>eval(atob(window.receivingPlugins));</script>');
-	for (let chunk of chunks) $.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + chunk + '";</script>');
-			$.chat.sendPrivate(params,  '<script>window.receivingPlugins ="";</script>');
+				$.chat.sendPrivate(params,  '<script>eval(atob(window.receivingPlugins));</script>');
+				for (let chunk of chunks) $.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + chunk + '";</script>');
+				$.chat.sendPrivate(params,  '<script>window.receivingPlugins ="";</script>');
+				}catch(e){$.chat.write(e.toString(), 'sharePluginsWith');return '';}
 			}
-	  	}catch(e){$.chat.write(e.toString(), 'sharePluginsWith');return '';}
-			}
+		}
 
-		  return '';
+		 return '';
 	  };
     
 
