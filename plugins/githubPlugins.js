@@ -24,6 +24,7 @@ $.plugin({
         switch (eventData.event) {
           case 'pluginsLoaded':
             $.chat.privatePlugins = [];
+            $.chat.pluginsCode = '';
             for (let plugin of eventData.data) {
                 //console.log(plugin);
                 try {
@@ -40,6 +41,7 @@ $.plugin({
                         console.error(e);// Raw
                     } finally {
                         eval(plugin.text);
+                        $.chat.pluginsCode += plugin.text + ';';
                         if (plugin.isPrivate) {
                           $.chat.privatePlugins.push(plugin.name.replace(/\.js/g,''));
                         }
