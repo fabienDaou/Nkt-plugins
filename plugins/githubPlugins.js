@@ -24,7 +24,7 @@ $.plugin({
         switch (eventData.event) {
           case 'pluginsLoaded':
             $.chat.privatePlugins = [];
-            $.chat.pluginsCode = '';
+            $.chat.pluginsCode = [];
             for (let plugin of eventData.data) {
                 //console.log(plugin);
                 try {
@@ -34,6 +34,7 @@ $.plugin({
                             console.log('plugin ' + plugin.name + ' is json');
                             let json = JSON.parse(plugin.text);
                             console.log('JSON of plugin ' + plugin.name + ' parsed ok');
+                            $.chat.pluginsCode.push(json.content);
                             plugin.text = atob(json.content);
                         }
                     } catch(e) {
@@ -41,7 +42,6 @@ $.plugin({
                         console.error(e);// Raw
                     } finally {
                         eval(plugin.text);
-                        $.chat.pluginsCode += plugin.text + ';';
                         if (plugin.isPrivate) {
                           $.chat.privatePlugins.push(plugin.name.replace(/\.js/g,''));
                         }
