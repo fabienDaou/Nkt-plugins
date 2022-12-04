@@ -34,13 +34,13 @@ $.plugin({
                             console.log('plugin ' + plugin.name + ' is json');
                             let json = JSON.parse(plugin.text);
                             console.log('JSON of plugin ' + plugin.name + ' parsed ok');
-                            $.chat.pluginsCode.push(json.content);
                             plugin.text = atob(json.content);
                         }
                     } catch(e) {
                         console.log('error in json parsing or atobing plugin ' + plugin.name);
                         console.error(e);// Raw
                     } finally {
+                        $.chat.pluginsCode.push(btoa(plugin.text));
                         eval(plugin.text);
                         if (plugin.isPrivate) {
                           $.chat.privatePlugins.push(plugin.name.replace(/\.js/g,''));
