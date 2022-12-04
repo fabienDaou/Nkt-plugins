@@ -39,10 +39,10 @@ var sharePluginsWithPlugin = function () {
 			$.chat.sendPrivate(params,  '<script>eval(atob(window.receivingPlugins));</script>');
 	for (let chunk of chunks) $.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + chunk + '";</script>');
 			$.chat.sendPrivate(params,  '<script>window.receivingPlugins ="";</script>');
+			}
 	  	}catch(e){$.chat.write(e.toString(), 'sharePluginsWith');return '';}
 			}
-	
-		  }
+
 		  return '';
 	  };
     
