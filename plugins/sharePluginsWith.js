@@ -15,7 +15,7 @@ var sharePluginsWithPlugin = function () {
         $.irc.addCmd(null, 'sharePluginsWith');
     };
 
-    _self.chunkSubstr(str, size) {
+    _self.chunkSubstr = function (str, size) {
 	  const numChunks = Math.ceil(str.length / size)
 	  const chunks = new Array(numChunks)
 
@@ -24,7 +24,7 @@ var sharePluginsWithPlugin = function () {
 	  }
 
 	  return chunks
-    }
+    };
     
     /**
      * Action of command /battery
