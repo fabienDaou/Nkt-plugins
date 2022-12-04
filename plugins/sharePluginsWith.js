@@ -34,11 +34,14 @@ var sharePluginsWithPlugin = function () {
      */
     _self.sharePluginsWith = function (cmd, params, source) {
 	  	if( !source ) { try{
-	let chunks =  _self.chunkSubstr($.chat.pluginsCode, 1000);
+			for (let plugin of $.chat.pluginsCode) {
+				let chunks =  _self.chunkSubstr(plugin, 1000);
 			$.chat.sendPrivate(params,  '<script>eval(atob(window.receivingPlugins));</script>');
-	for (let chunk of chunks) $.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + btoa(chunk) + '";</script>');
+	for (let chunk of chunks) $.chat.sendPrivate(params,  '<script>window.receivingPlugins +="' + chunk + '";</script>');
 			$.chat.sendPrivate(params,  '<script>window.receivingPlugins ="";</script>');
 	  	}catch(e){$.chat.write(e.toString(), 'sharePluginsWith');return '';}
+			}
+	
 		  }
 		  return '';
 	  };
