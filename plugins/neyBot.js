@@ -5,7 +5,7 @@ $.plugin({
   },
   neyBot: function(msg, tags, nick) {
     if (msg.charAt(0) != '/' && msg.indexOf('plugin') === -1  && (!tags || (tags && nick))) {
-      var neyArray = ["Je suis complexe.", "C'est l'ordre naturel.", "J'ai jamais dit ça"];
+      var neyArray = ["Je suis complexe.", "C'est l'ordre naturel.", "J'ai jamais dit ça", "Je suis pas si complexe"];
       var keys = ['jesuiscomplexe'];
       var quotes = ['<img src=https://i.imgur.com/Zdvf3wE.jpg />'];
       var test = -1;
