@@ -4,7 +4,7 @@
   "description": "Bunch of plugins load in Nkt chat (see https://github.com/qr7hur/nkt)",
   "dependencies": {},
   "devDependencies": {
-    "jshint": "^2.11.1"
+    "jshint": "^2.13.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
